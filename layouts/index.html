@@ -1,132 +1,8 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-	<meta name="generator" content="Hugo 0.155.3"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Бригада Багаева — Частная строительная бригада. Строим под ключ — от проекта до кровли. Гарантия 15 лет на работы.</title>
-  <meta name="description" content="Частная строительная бригада. 10 лет опыта. Гарантия 15 лет на работы. Полная смета до начала — без скрытых расходов.">
+{{ define "main" }}
 
-  
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Строим под ключ — от проекта до кровли">
-  <meta property="og:description" content="Частная строительная бригада. 10 лет опыта. Гарантия 15 лет на работы. Полная смета до начала — без скрытых расходов.">
-  <meta property="og:url" content="http://localhost:1313/">
-  <meta property="og:locale" content="ru_RU">
-
-  
-  
-  <link rel="stylesheet" href="/css/main.min.e7e3a20265b2010f858b12934841029f769b292e1ffb7e44a71b06a786e59e82.css" integrity="sha256-5&#43;OiAmWyAQ&#43;FixKTSEECn3abKS4f&#43;35EpxsGp4blnoI=">
-
-  
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-
-  
-  <link rel="canonical" href="http://localhost:1313/">
-
-  
-  
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "HomeAndConstructionBusiness",
-    "name": "Бригада Багаева",
-    "description": "Частная строительная бригада. Строим под ключ — от проекта до кровли. Гарантия 15 лет на работы.",
-    "url": "http:\/\/localhost:1313\/",
-    "telephone": "\u002b7 (XXX) XXX-XX-XX",
-    "areaServed": "Подмосковье"
-  }
-  </script>
-  
-</head>
-<body>
-
-  <header class="site-header">
-  <div class="container header-inner">
-
-    <a href="/" class="logo" aria-label="Бригада Багаева">
-      
-      <span class="logo-text">БРИГАДА <span class="logo-accent">БАГАЕВА</span></span>
-    </a>
-
-    
-    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true">
-    <label for="nav-toggle" class="nav-burger" aria-label="Меню">
-      <span></span><span></span><span></span>
-    </label>
-
-    <nav class="site-nav" aria-label="Основная навигация">
-      <ul class="nav-list">
-        
-        <li class="nav-item">
-          <a href="/"
-             class="nav-link nav-link--active">
-            Главная
-          </a>
-        </li>
-        
-        <li class="nav-item">
-          <a href="/proekt/"
-             class="nav-link">
-            Проект
-          </a>
-        </li>
-        
-        <li class="nav-item">
-          <a href="/smeta/"
-             class="nav-link">
-            Смета
-          </a>
-        </li>
-        
-        <li class="nav-item">
-          <a href="/planirovka/"
-             class="nav-link">
-            Планировка
-          </a>
-        </li>
-        
-        <li class="nav-item">
-          <a href="/fundament/"
-             class="nav-link">
-            Фундамент
-          </a>
-        </li>
-        
-        <li class="nav-item">
-          <a href="/steny/"
-             class="nav-link">
-            Стены
-          </a>
-        </li>
-        
-        <li class="nav-item">
-          <a href="/krovlya/"
-             class="nav-link">
-            Кровля
-          </a>
-        </li>
-        
-        <li class="nav-item">
-          <a href="/gotovo/"
-             class="nav-link">
-            Готово
-          </a>
-        </li>
-        
-      </ul>
-    </nav>
-
-  </div>
-</header>
-
-
-  <main>
-    
-
-
+{{/* ── HERO ─────────────────────────────────────────────── */}}
 <section class="hero section--dark">
-  
+  {{/* Фото Hero — заменить после получения от заказчика (см. 04_контент.md, фото 1.1) */}}
   <img class="hero__bg"
        src="/images/hero/main.jpg"
        alt="Готовый дом — лучший объект бригады Багаева"
@@ -138,12 +14,12 @@
     <div class="hero__content">
       <h1>Строим под ключ —<br>от проекта до кровли</h1>
       <p>
-        Частная бригада. 10 лет опыта.
-        Гарантия 15 лет на работы.
+        Частная бригада. {{ .Site.Params.experience }} лет опыта.
+        Гарантия {{ .Site.Params.guarantee }} лет на работы.
         Полная смета до начала — без скрытых расходов.
       </p>
       <div class="hero__cta">
-        <a href="https://wa.me/7XXXXXXXXXX" class="btn btn-primary" target="_blank" rel="noopener">
+        <a href="{{ .Site.Params.whatsapp }}" class="btn btn-primary" target="_blank" rel="noopener">
           Обсудить проект
         </a>
         <a href="/gotovo/" class="btn btn-secondary">
@@ -154,7 +30,7 @@
   </div>
 </section>
 
-
+{{/* ── УСЛУГИ ───────────────────────────────────────────── */}}
 <section class="section section--surface">
   <div class="container">
     <div class="section-header">
@@ -234,9 +110,9 @@
   </div>
 </section>
 
-
-
-
+{{/* ── ПОСЛЕДНИЕ ОБЪЕКТЫ ────────────────────────────────── */}}
+{{ $projects := where .Site.RegularPages "Section" "gotovo" }}
+{{ if $projects }}
 <section class="section">
   <div class="container">
     <div class="section-header">
@@ -245,62 +121,41 @@
       <p>Реальные объекты с разбивкой стоимости по каждому этапу</p>
     </div>
     <div class="projects-grid">
-      
-      <a href="http://localhost:1313/gotovo/dom-iz-gazobetona-120m2/" class="project-card">
-        
+      {{ range first 3 $projects }}
+      <a href="{{ .Permalink }}" class="project-card">
+        {{ with .Params.cover }}
         <img class="project-card__photo"
-             src="/images/gotovo/dom-gazobeton/cover.jpg"
-             alt="Строим под ключ — от проекта до кровли"
+             src="{{ . }}"
+             alt="{{ $.Title }}"
              loading="lazy">
-        
+        {{ else }}
+        <div class="project-card__photo--placeholder">Фото объекта</div>
+        {{ end }}
         <div class="project-card__body">
-          <h3>Дом из газобетона 120 м²</h3>
+          <h3>{{ .Title }}</h3>
           <div class="project-card__meta">
-            120 м²
-             · Подмосковье
+            {{ with .Params.area }}{{ . }} м²{{ end }}
+            {{ with .Params.region }} · {{ . }}{{ end }}
           </div>
-          
-          <div class="project-card__detail">Фундамент: ленточный · Стены: газобетон D500 · Кровля: металлочерепица</div>
-          
-          
-          <div class="project-card__price">от 1 235 000 ₽</div>
-          
+          {{ with .Params.materials }}
+          <div class="project-card__detail">{{ . }}</div>
+          {{ end }}
+          {{ with .Params.cost_total }}
+          <div class="project-card__price">{{ . }}</div>
+          {{ end }}
           <span class="project-card__link">Смотреть проект →</span>
         </div>
       </a>
-      
-      <a href="http://localhost:1313/gotovo/banya-iz-brusa/" class="project-card">
-        
-        <img class="project-card__photo"
-             src="/images/gotovo/banya-brus/cover.jpg"
-             alt="Строим под ключ — от проекта до кровли"
-             loading="lazy">
-        
-        <div class="project-card__body">
-          <h3>Баня из бруса 8×6 м</h3>
-          <div class="project-card__meta">
-            48 м²
-             · Тверская обл.
-          </div>
-          
-          <div class="project-card__detail">Фундамент: плитный · Стены: брус 150×150 · Кровля: мягкая черепица</div>
-          
-          
-          <div class="project-card__price">от 650 000 ₽</div>
-          
-          <span class="project-card__link">Смотреть проект →</span>
-        </div>
-      </a>
-      
+      {{ end }}
     </div>
     <div class="text-center mt-32">
       <a href="/gotovo/" class="btn btn-outline">Все объекты →</a>
     </div>
   </div>
 </section>
+{{ end }}
 
-
-
+{{/* ── ПОЧЕМУ МЫ ────────────────────────────────────────── */}}
 <section class="section section--surface">
   <div class="container">
     <div class="section-header">
@@ -315,7 +170,7 @@
             <circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/>
           </svg>
         </div>
-        <h4>10 лет опыта</h4>
+        <h4>{{ .Site.Params.experience }} лет опыта</h4>
         <p>Реальная цифра, не маркетинговый штамп</p>
       </div>
 
@@ -325,7 +180,7 @@
             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
           </svg>
         </div>
-        <h4>15 лет гарантии на работы</h4>
+        <h4>{{ .Site.Params.guarantee }} лет гарантии на работы</h4>
         <p>На качество монтажа — не на материалы</p>
       </div>
 
@@ -388,7 +243,7 @@
   </div>
 </section>
 
-
+{{/* ── ПРОЦЕСС ──────────────────────────────────────────── */}}
 <section class="section">
   <div class="container">
     <div class="section-header text-center">
@@ -396,144 +251,34 @@
       <h2>Прозрачный процесс</h2>
     </div>
     <div class="process-steps">
-      
-      
+      {{ $steps := slice "Звонок" "Выезд на объект" "Проект" "Смета" "Договор" "Строительство" "Сдача" }}
+      {{ range $i, $step := $steps }}
       <div class="process-step">
-        <div class="process-step__num">1</div>
-        <div class="process-step__label">Звонок</div>
+        <div class="process-step__num">{{ add $i 1 }}</div>
+        <div class="process-step__label">{{ $step }}</div>
       </div>
-      
-      <div class="process-step">
-        <div class="process-step__num">2</div>
-        <div class="process-step__label">Выезд на объект</div>
-      </div>
-      
-      <div class="process-step">
-        <div class="process-step__num">3</div>
-        <div class="process-step__label">Проект</div>
-      </div>
-      
-      <div class="process-step">
-        <div class="process-step__num">4</div>
-        <div class="process-step__label">Смета</div>
-      </div>
-      
-      <div class="process-step">
-        <div class="process-step__num">5</div>
-        <div class="process-step__label">Договор</div>
-      </div>
-      
-      <div class="process-step">
-        <div class="process-step__num">6</div>
-        <div class="process-step__label">Строительство</div>
-      </div>
-      
-      <div class="process-step">
-        <div class="process-step__num">7</div>
-        <div class="process-step__label">Сдача</div>
-      </div>
-      
+      {{ end }}
     </div>
   </div>
 </section>
 
-
+{{/* ── CTA ──────────────────────────────────────────────── */}}
 <div class="cta-section">
   <div class="container">
     <h2>Расскажите о вашей задаче</h2>
     <p>Назовём примерную стоимость на звонке — без обязательств</p>
     <div class="cta-buttons">
-      <a href="tel:&#43;7" class="btn btn-primary">
+      <a href="tel:{{ .Site.Params.phone | replaceRE "[^+0-9]" "" }}" class="btn btn-primary">
         Позвонить
       </a>
-      <a href="https://wa.me/7XXXXXXXXXX" class="btn btn-outline" target="_blank" rel="noopener">
+      <a href="{{ .Site.Params.whatsapp }}" class="btn btn-outline" target="_blank" rel="noopener">
         WhatsApp
       </a>
-      <a href="https://t.me/XXXXXXXXX" class="btn btn-outline" target="_blank" rel="noopener">
+      <a href="{{ .Site.Params.telegram }}" class="btn btn-outline" target="_blank" rel="noopener">
         Telegram
       </a>
     </div>
   </div>
 </div>
 
-
-  </main>
-
-  <footer class="site-footer">
-  <div class="container footer-grid">
-
-    <div class="footer-about">
-      <a href="/" class="logo logo--light" aria-label="Бригада Багаева">
-        <span class="logo-text">БРИГАДА <span class="logo-accent">БАГАЕВА</span></span>
-      </a>
-      <p class="footer-desc">
-        Частная строительная бригада. Строим под ключ — от проекта до кровли.
-        Работаем честно: полная смета до начала, поэтапная оплата, фотоотчёты.
-      </p>
-      <p class="footer-guarantee">Гарантия на работы: 15 лет</p>
-    </div>
-
-    <nav class="footer-nav" aria-label="Навигация в футере">
-      <h4 class="footer-nav__title">Разделы</h4>
-      <ul>
-        
-        
-        
-        
-        <li><a href="/proekt/">Проект</a></li>
-        
-        
-        
-        <li><a href="/smeta/">Смета</a></li>
-        
-        
-        
-        <li><a href="/planirovka/">Планировка</a></li>
-        
-        
-        
-        <li><a href="/fundament/">Фундамент</a></li>
-        
-        
-        
-        <li><a href="/steny/">Стены</a></li>
-        
-        
-        
-        <li><a href="/krovlya/">Кровля</a></li>
-        
-        
-        
-        <li><a href="/gotovo/">Готово</a></li>
-        
-        
-      </ul>
-    </nav>
-
-    <div class="footer-contacts">
-      <h4 class="footer-nav__title">Контакты</h4>
-      <ul>
-        <li><a href="tel:&#43;7">&#43;7 (XXX) XXX-XX-XX</a></li>
-        <li><a href="https://wa.me/7XXXXXXXXXX" target="_blank" rel="noopener">WhatsApp</a></li>
-        <li><a href="https://t.me/XXXXXXXXX" target="_blank" rel="noopener">Telegram</a></li>
-      </ul>
-      <p class="footer-requisites">
-        ИП Багаев __<br>
-        ИНН: XXXXXXXXXX<br>
-        ОГРНИП: XXXXXXXXXXXXX
-      </p>
-    </div>
-
-  </div>
-
-  <div class="footer-bottom">
-    <div class="container footer-bottom__inner">
-      <span>© 2026 · Бригада Багаева</span>
-      <span>Подмосковье</span>
-    </div>
-  </div>
-</footer>
-
-
-</body>
-</html>
+{{ end }}

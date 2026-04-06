@@ -1,0 +1,234 @@
+{{ define "main" }}
+
+{{/* ── HERO РАЗДЕЛА ─────────────────────────────────────── */}}
+<section class="section-hero section--dark">
+  <div class="container">
+    <div class="section-hero__content">
+      {{ if eq .Section "fundament" }}
+        <div class="section-label" style="color:rgba(255,255,255,0.5)">Виды фундаментов</div>
+        <h1>Фундамент: то, что нельзя переделать</h1>
+        <p>Правильный выбор типа фундамента — это решение принимается один раз на весь срок жизни дома.</p>
+      {{ else if eq .Section "steny" }}
+        <div class="section-label" style="color:rgba(255,255,255,0.5)">Материалы стен</div>
+        <h1>Стены: выберите материал под проект и бюджет</h1>
+        <p>Работаем со всеми основными материалами — от каркаса до кирпича.</p>
+      {{ else if eq .Section "krovlya" }}
+        <div class="section-label" style="color:rgba(255,255,255,0.5)">Виды кровли</div>
+        <h1>Кровля: монтаж под любой проект и бюджет</h1>
+        <p>Металлочерепица, мягкая черепица, фальц, профнастил, плоская кровля — работаем с любым материалом.</p>
+      {{ else if eq .Section "gotovo" }}
+        <div class="section-label" style="color:rgba(255,255,255,0.5)">Завершённые проекты</div>
+        <h1>Готовые объекты</h1>
+        <p>Реальные объекты с разбивкой стоимости по каждому этапу работ.</p>
+      {{ else }}
+        <h1>{{ .Title }}</h1>
+        {{ with .Params.description }}<p>{{ . }}</p>{{ end }}
+      {{ end }}
+      <div class="hero__cta" style="margin-top:28px">
+        <a href="{{ .Site.Params.whatsapp }}" class="btn btn-primary" target="_blank" rel="noopener">
+          {{ if eq .Section "fundament" }}Помогите выбрать фундамент
+          {{ else if eq .Section "steny" }}Помогите выбрать материал
+          {{ else if eq .Section "krovlya" }}Рассчитать стоимость кровли
+          {{ else }}Обсудить проект{{ end }}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{/* ── СПЕЦИАЛЬНЫЙ БЛОК ДЛЯ ФУНДАМЕНТА ─────────────────── */}}
+{{ if eq .Section "fundament" }}
+<section class="section section--surface">
+  <div class="container">
+    <div class="section-header text-center">
+      <div class="section-label">Главный принцип</div>
+      <h2>Фундамент — не самая дорогая статья. Но самая важная.</h2>
+      <p>Крышу перекроют. Стены переложат. Планировку изменят. Фундамент — нет.<br>
+      Это единственный элемент здания, ошибка в котором стоит всего объекта.</p>
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{/* ── СПЕЦИАЛЬНЫЙ БЛОК ДЛЯ СТЕН: что важно при выборе ── */}}
+{{ if eq .Section "steny" }}
+<section class="section section--surface">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Как выбрать</div>
+      <h2>Что важно при выборе материала стен</h2>
+    </div>
+    <div class="trust-grid">
+      <div class="trust-item">
+        <h4>Бюджет</h4>
+        <p>Каркас и газобетон — доступно. Кирпич и монолит — дороже в разы. Разница существенная.</p>
+      </div>
+      <div class="trust-item">
+        <h4>Скорость строительства</h4>
+        <p>Каркас — под крышу за несколько недель. Кирпич — долго и трудоёмко.</p>
+      </div>
+      <div class="trust-item">
+        <h4>Теплоизоляция</h4>
+        <p>Каркас с правильным пирогом и газобетон — хорошо. Кирпич без утепления — плохо.</p>
+      </div>
+      <div class="trust-item">
+        <h4>Фундамент</h4>
+        <p>Тяжёлые стены (кирпич, монолит) требуют мощного фундамента. Каркас можно ставить на УШП.</p>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{/* ── СЕТКА ДОЧЕРНИХ СТРАНИЦ ─────────────────────────── */}}
+{{ if .Pages }}
+<section class="section">
+  <div class="container">
+
+    {{ if eq .Section "gotovo" }}
+      {{/* Кейсы — карточки с ценой */}}
+      <div class="projects-grid">
+        {{ range .Pages }}
+        <a href="{{ .Permalink }}" class="project-card">
+          {{ with .Params.cover }}
+          <img class="project-card__photo" src="{{ . }}" alt="{{ $.Title }}" loading="lazy">
+          {{ else }}
+          <div class="project-card__photo--placeholder">Фото объекта</div>
+          {{ end }}
+          <div class="project-card__body">
+            <h3>{{ .Title }}</h3>
+            <div class="project-card__meta">
+              {{ with .Params.area }}{{ . }} м²{{ end }}
+              {{ with .Params.region }} · {{ . }}{{ end }}
+            </div>
+            {{ with .Params.materials }}
+            <div class="project-card__detail">{{ . }}</div>
+            {{ end }}
+            {{ with .Params.cost_total }}
+            <div class="project-card__price">{{ . }}</div>
+            {{ end }}
+            <span class="project-card__link">Смотреть проект →</span>
+          </div>
+        </a>
+        {{ end }}
+      </div>
+
+    {{ else if eq .Section "steny" }}
+      {{/* Стены — три группы: КАРКАС / ДЕРЕВЯННЫЕ / КАМЕННЫЕ */}}
+      {{ $groups := slice
+        (dict "name" "Каркас"            "pages" (where $.Pages "Params.group" "Каркас"))
+        (dict "name" "Деревянные"        "pages" (where $.Pages "Params.group" "Деревянные"))
+        (dict "name" "Каменные и монолит" "pages" (where $.Pages "Params.group" "Каменные и монолит"))
+      }}
+      {{ range $groups }}
+      {{ if .pages }}
+      <div class="steny-group">
+        <h3 class="steny-group__title">{{ .name }}</h3>
+        <div class="services-grid">
+          {{ range .pages }}
+          <a href="{{ .Permalink }}" class="service-card">
+            <h3>{{ .Title }}</h3>
+            {{ with .Params.description }}<p>{{ . }}</p>{{ end }}
+          </a>
+          {{ end }}
+        </div>
+      </div>
+      {{ end }}
+      {{ end }}
+
+      {{/* Связка с фундаментом */}}
+      <div class="crosslink-block mt-48">
+        <p>Выбор материала стен влияет на тип фундамента. Каркасный дом — подходит УШП. Кирпич или монолит — нужна лента или плита.</p>
+        <a href="/fundament/" class="btn btn-outline mt-16">Выбрать фундамент →</a>
+      </div>
+
+    {{ else }}
+      {{/* Фундамент, Кровля — обычная сетка */}}
+      <div class="services-grid">
+        {{ range .Pages }}
+        <a href="{{ .Permalink }}" class="service-card">
+          <h3>{{ .Title }}</h3>
+          {{ with .Params.description }}<p>{{ . }}</p>{{ end }}
+        </a>
+        {{ end }}
+      </div>
+
+      {{/* Субподряд для фундамента */}}
+      {{ if eq $.Section "fundament" }}
+      <div class="crosslink-block mt-32">
+        <p class="text-muted" style="font-size:0.9rem">
+          <strong>Свайно-ростверковый фундамент</strong> — выполняем через субподрядчиков для сложных грунтов.
+          Обсуждается индивидуально.
+        </p>
+      </div>
+      {{ end }}
+
+    {{ end }}
+
+  </div>
+</section>
+{{ end }}
+
+{{/* ── БЛОК ГАРАНТИИ (для разделов работ) ─────────────── */}}
+{{ if or (eq .Section "fundament") (eq .Section "steny") (eq .Section "krovlya") }}
+<section class="section section--surface">
+  <div class="container">
+    <div class="trust-grid">
+      <div class="trust-item">
+        <div class="trust-item__icon">
+          <svg width="22" height="22" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <h4>{{ .Site.Params.guarantee }} лет гарантии на работы</h4>
+        <p>На качество монтажа — не на материалы</p>
+      </div>
+      <div class="trust-item">
+        <div class="trust-item__icon">
+          <svg width="22" height="22" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+            <circle cx="12" cy="13" r="4"/>
+          </svg>
+        </div>
+        <h4>Фотоотчёты по этапам</h4>
+        <p>Особенно важны для скрытых работ — армирование и стропилка до закрытия</p>
+      </div>
+      <div class="trust-item">
+        <div class="trust-item__icon">
+          <svg width="22" height="22" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+            <circle cx="12" cy="12" r="3"/>
+          </svg>
+        </div>
+        <h4>Приветствуем строительный надзор</h4>
+        <p>Нам нечего скрывать</p>
+      </div>
+      <div class="trust-item">
+        <div class="trust-item__icon">
+          <svg width="22" height="22" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="1" y="4" width="22" height="16" rx="2"/>
+            <line x1="1" y1="10" x2="23" y2="10"/>
+          </svg>
+        </div>
+        <h4>Оплата поэтапно</h4>
+        <p>Платите только за принятый этап работ</p>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{/* ── CTA ──────────────────────────────────────────────── */}}
+<div class="cta-section">
+  <div class="container">
+    <h2>Остались вопросы?</h2>
+    <p>Расскажите о задаче — подберём решение и назовём стоимость</p>
+    <div class="cta-buttons">
+      <a href="tel:{{ .Site.Params.phone | replaceRE "[^+0-9]" "" }}" class="btn btn-primary">Позвонить</a>
+      <a href="{{ .Site.Params.whatsapp }}" class="btn btn-outline" target="_blank" rel="noopener">WhatsApp</a>
+      <a href="{{ .Site.Params.telegram }}" class="btn btn-outline" target="_blank" rel="noopener">Telegram</a>
+    </div>
+  </div>
+</div>
+
+{{ end }}

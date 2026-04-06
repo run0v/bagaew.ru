@@ -1,0 +1,169 @@
+{{ define "main" }}
+
+{{/* ── HERO СТРАНИЦЫ ────────────────────────────────────── */}}
+<section class="section-hero section--dark">
+  <div class="container">
+    <div class="section-hero__content">
+      {{ if .Parent }}
+      <div class="section-label" style="color:rgba(255,255,255,0.5)">
+        <a href="{{ .Parent.Permalink }}" style="color:rgba(255,255,255,0.5)">
+          ← {{ .Parent.Title }}
+        </a>
+      </div>
+      {{ end }}
+      <h1>{{ .Title }}</h1>
+      {{ with .Params.description }}<p>{{ . }}</p>{{ end }}
+    </div>
+  </div>
+</section>
+
+{{/* ── БЛОК ЭТАПОВ И СТОИМОСТИ (только для Готово) ─────── */}}
+{{ if .Params.stages }}
+<section class="section section--surface">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Стоимость по этапам</div>
+      <h2>Из чего складывается цена этого объекта</h2>
+      <p>Каждый этап — отдельная строка в смете. Оплачивается после приёмки.</p>
+    </div>
+    <div class="stages-list">
+      {{ range .Params.stages }}
+      <div class="stage-item{{ if .done }} stage-item--done{{ end }}">
+        <div class="stage-item__head">
+          <a href="{{ .url }}" class="stage-item__name">{{ .name }}</a>
+          <span class="stage-item__price">{{ .cost_display }}</span>
+        </div>
+        {{ with .detail }}
+        <div class="stage-item__detail">{{ . }}</div>
+        {{ end }}
+      </div>
+      {{ end }}
+    </div>
+    {{ with .Params.cost_total }}
+    <div class="stages-total">
+      <span>Итого по объекту:</span>
+      <strong>{{ . }}</strong>
+    </div>
+    {{ end }}
+  </div>
+</section>
+
+{{/* ── ФОТОГАЛЕРЕЯ ПО ЭТАПАМ ───────────────────────────── */}}
+{{ if .Params.photos }}
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Фотоотчёт</div>
+      <h2>Фото по этапам работ</h2>
+    </div>
+
+    {{/* Вкладки этапов */}}
+    <div class="gallery-tabs">
+
+      {{ $tabs := slice
+        (dict "key" "planirovka" "label" "Планировка")
+        (dict "key" "fundament"  "label" "Фундамент")
+        (dict "key" "steny"      "label" "Стены")
+        (dict "key" "krovlya"    "label" "Кровля")
+        (dict "key" "gotovo"     "label" "Готово")
+      }}
+
+      {{ range $i, $tab := $tabs }}
+        {{ $photos := index $.Params.photos $tab.key }}
+        {{ if $photos }}
+        <input type="radio" name="gallery-tab" id="tab-{{ $tab.key }}"
+               class="gallery-tab-input"
+               {{ if eq $i 0 }}checked{{ end }}>
+        {{ end }}
+      {{ end }}
+
+      <div class="gallery-tab-labels">
+        {{ range $i, $tab := $tabs }}
+          {{ $photos := index $.Params.photos $tab.key }}
+          {{ if $photos }}
+          <label for="tab-{{ $tab.key }}" class="gallery-tab-label">{{ $tab.label }}</label>
+          {{ end }}
+        {{ end }}
+      </div>
+
+      {{ range $tab := $tabs }}
+        {{ $photos := index $.Params.photos $tab.key }}
+        {{ if $photos }}
+        <div class="gallery-panel" id="panel-{{ $tab.key }}">
+          <div class="gallery-grid">
+            {{ range $photos }}
+            <div class="gallery-item">
+              <img src="{{ .src }}"
+                   alt="{{ .alt }}"
+                   loading="lazy"
+                   class="gallery-img"
+                   onerror="this.parentElement.classList.add('gallery-item--placeholder'); this.style.display='none'">
+              {{/* Заглушка — видна если фото ещё нет */}}
+              <div class="gallery-placeholder" aria-hidden="true">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <rect x="3" y="3" width="18" height="18" rx="2"/>
+                  <circle cx="8.5" cy="8.5" r="1.5"/>
+                  <polyline points="21,15 16,10 5,21"/>
+                </svg>
+                <span>{{ .alt }}</span>
+              </div>
+            </div>
+            {{ end }}
+          </div>
+        </div>
+        {{ end }}
+      {{ end }}
+
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}{{/* конец блока stages */}}
+
+{{/* ── ОСНОВНОЙ КОНТЕНТ (если есть) ───────────────────── */}}
+{{ if .Content }}
+<section class="section">
+  <div class="container prose">
+    {{ .Content }}
+  </div>
+</section>
+{{ end }}
+
+{{/* ── ДРУГИЕ СТРАНИЦЫ РАЗДЕЛА ─────────────────────────── */}}
+{{ with .Parent }}
+{{ if .Pages }}
+<section class="section section--surface">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Другие варианты</div>
+      <h2>{{ .Title }}</h2>
+    </div>
+    <div class="services-grid">
+      {{ range .Pages }}
+      {{ if ne .Permalink $.Permalink }}
+      <a href="{{ .Permalink }}" class="service-card">
+        <h3>{{ .Title }}</h3>
+        {{ with .Params.description }}<p>{{ . }}</p>{{ end }}
+      </a>
+      {{ end }}
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+
+{{/* ── CTA ──────────────────────────────────────────────── */}}
+<div class="cta-section">
+  <div class="container">
+    <h2>Нужна консультация или смета?</h2>
+    <p>Расскажите о задаче — ответим в течение часа</p>
+    <div class="cta-buttons">
+      <a href="tel:{{ .Site.Params.phone | replaceRE "[^+0-9]" "" }}" class="btn btn-primary">Позвонить</a>
+      <a href="{{ .Site.Params.whatsapp }}" class="btn btn-outline" target="_blank" rel="noopener">WhatsApp</a>
+      <a href="{{ .Site.Params.telegram }}" class="btn btn-outline" target="_blank" rel="noopener">Telegram</a>
+    </div>
+  </div>
+</div>
+
+{{ end }}

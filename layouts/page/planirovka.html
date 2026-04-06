@@ -1,0 +1,148 @@
+{{ define "main" }}
+
+{{/* ── HERO ─────────────────────────────────────────────── */}}
+<section class="section-hero section--dark">
+  <div class="container">
+    <div class="section-hero__content">
+      <h1>Планировка участка: с чего начинается правильная стройка</h1>
+      <p>Вертикальная планировка и разбивка осей — два шага, которые определяют всё что будет после.</p>
+      <div class="hero__cta" style="margin-top:28px">
+        <a href="{{ .Site.Params.whatsapp }}" class="btn btn-primary" target="_blank" rel="noopener">Обсудить выезд на объект</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{/* ── ИНФОГРАФИКА: ПОСЛЕДОВАТЕЛЬНОСТЬ ────────────────── */}}
+<section class="section section--surface">
+  <div class="container">
+    <div class="section-header text-center">
+      <div class="section-label">Последовательность</div>
+      <h2>Планировка — это первый шаг, а не «подготовка»</h2>
+    </div>
+    <div class="process-steps">
+      {{ $chain := slice "Участок" "Планировка рельефа" "Разбивка осей" "Фундамент" "Стены" "Кровля" }}
+      {{ range $i, $step := $chain }}
+      <div class="process-step">
+        <div class="process-step__num">{{ add $i 1 }}</div>
+        <div class="process-step__label">{{ $step }}</div>
+      </div>
+      {{ end }}
+    </div>
+    <p class="text-center text-muted mt-24" style="font-size:0.9rem">
+      Ошибка на этом этапе — самая дорогая ошибка на стройке. Исправить её после фундамента крайне сложно.
+    </p>
+  </div>
+</section>
+
+{{/* ── ВЕРТИКАЛЬНАЯ ПЛАНИРОВКА ──────────────────────────── */}}
+<section class="section">
+  <div class="container">
+    <div class="two-col">
+      <div>
+        <div class="section-label">Услуга 1</div>
+        <h2>Вода должна уходить от дома, а не к нему</h2>
+        <p>
+          Вертикальная планировка — это работа с рельефом участка: срезка лишнего грунта,
+          подсыпка там где не хватает, формирование правильных уклонов для отвода воды от здания.
+        </p>
+        <p>
+          Неправильные уклоны → вода идёт к фундаменту → подтопление и разрушение конструкции.
+          Сделать правильно до заливки фундамента — недорого. Переделать после — очень дорого
+          или невозможно вообще.
+        </p>
+        <ul class="feature-list">
+          <li>Анализ существующего рельефа</li>
+          <li>Срезка / подсыпка грунта по проектным отметкам</li>
+          <li>Формирование уклонов для поверхностного водоотвода</li>
+        </ul>
+        <p class="text-muted" style="font-size:0.875rem; margin-top:16px">
+          Вывоз лишнего грунта — по дополнительной договорённости, отдельная статья сметы.
+        </p>
+        <a href="{{ .Site.Params.whatsapp }}" class="btn btn-outline mt-24" target="_blank" rel="noopener">
+          Оценим уклоны на вашем участке
+        </a>
+      </div>
+      <div>
+        {{/* TODO: добавить иллюстрацию — уклон к дому vs уклон от дома */}}
+        <div class="illustration-placeholder">
+          Иллюстрация: правильный и неправильный уклон
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{/* ── РАЗБИВКА ОСЕЙ ────────────────────────────────────── */}}
+<section class="section section--surface">
+  <div class="container">
+    <div class="two-col two-col--reverse">
+      <div>
+        {{/* TODO: добавить иллюстрацию схемы разбивки — вид сверху */}}
+        <div class="illustration-placeholder">
+          Схема разбивки: участок, красные линии, отступы, здание на своём месте
+        </div>
+      </div>
+      <div>
+        <div class="section-label">Услуга 2</div>
+        <h2>Здание встанет именно туда, куда вы планировали</h2>
+        <p>
+          Разбивка осей — геодезический перенос проекта на участок. Фиксируем точное положение
+          здания на местности с учётом отступов от границ участка и красных линий.
+        </p>
+        <p>
+          Ошибка в разбивке — фундамент залит не там. Это согласования, штрафы, а в худшем случае снос.
+          Точность разбивки определяет геометрию всего здания.
+        </p>
+        <ul class="feature-list">
+          <li>Геодезия по прибору или иными измерительными средствами</li>
+          <li>Установка обносок — ориентиров для строителей</li>
+          <li>Разметка осей фундамента на местности</li>
+          <li>Контрольная проверка перед земляными работами</li>
+        </ul>
+        <p class="text-muted" style="font-size:0.875rem; margin-top:16px">
+          Дренаж и вводные коммуникации — индивидуально, обсуждается при выезде на объект.
+        </p>
+        <a href="{{ .Site.Params.whatsapp }}" class="btn btn-outline mt-24" target="_blank" rel="noopener">
+          Покажем как проект ляжет на ваш участок
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{/* ── ЛОГИКА ПОСЛЕДОВАТЕЛЬНОСТИ ───────────────────────── */}}
+<section class="section">
+  <div class="container text-center">
+    <div class="section-label">Важно</div>
+    <h2>Только в такой последовательности</h2>
+    <p style="max-width:560px; margin:0 auto 32px; color:var(--text-muted)">
+      Планировка и разбивка делаются до фундамента — не параллельно и не после.
+      Это не бюрократия, это логика: каждый следующий этап опирается на предыдущий.
+    </p>
+    <div class="process-steps" style="max-width:600px; margin:0 auto">
+      {{ $seq := slice "Планировка рельефа" "Разбивка осей" "Фундамент" }}
+      {{ range $i, $step := $seq }}
+      <div class="process-step">
+        <div class="process-step__num">{{ add $i 1 }}</div>
+        <div class="process-step__label">{{ $step }}</div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+{{/* ── CTA ──────────────────────────────────────────────── */}}
+<div class="cta-section">
+  <div class="container">
+    <h2>Есть участок и проект?</h2>
+    <p>Выедем, оценим, рассчитаем стоимость планировки</p>
+    <div class="cta-buttons">
+      <a href="tel:{{ .Site.Params.phone | replaceRE "[^+0-9]" "" }}" class="btn btn-primary">Позвонить</a>
+      <a href="{{ .Site.Params.whatsapp }}" class="btn btn-outline" target="_blank" rel="noopener">WhatsApp</a>
+      <a href="{{ .Site.Params.telegram }}" class="btn btn-outline" target="_blank" rel="noopener">Telegram</a>
+    </div>
+  </div>
+</div>
+
+{{ end }}

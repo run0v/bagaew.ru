@@ -1,0 +1,48 @@
+<footer class="site-footer">
+  <div class="container footer-grid">
+
+    <div class="footer-about">
+      <a href="/" class="logo logo--light" aria-label="{{ .Site.Title }}">
+        <span class="logo-text">БРИГАДА <span class="logo-accent">БАГАЕВА</span></span>
+      </a>
+      <p class="footer-desc">
+        Частная строительная бригада. Строим под ключ — от проекта до кровли.
+        Работаем честно: полная смета до начала, поэтапная оплата, фотоотчёты.
+      </p>
+      <p class="footer-guarantee">Гарантия на работы: {{ .Site.Params.guarantee }} лет</p>
+    </div>
+
+    <nav class="footer-nav" aria-label="Навигация в футере">
+      <h4 class="footer-nav__title">Разделы</h4>
+      <ul>
+        {{ range .Site.Menus.main }}
+        {{ if ne .URL "/" }}
+        <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+        {{ end }}
+        {{ end }}
+      </ul>
+    </nav>
+
+    <div class="footer-contacts">
+      <h4 class="footer-nav__title">Контакты</h4>
+      <ul>
+        <li><a href="tel:{{ .Site.Params.phone | replaceRE "[^+0-9]" "" }}">{{ .Site.Params.phone }}</a></li>
+        <li><a href="{{ .Site.Params.whatsapp }}" target="_blank" rel="noopener">WhatsApp</a></li>
+        <li><a href="{{ .Site.Params.telegram }}" target="_blank" rel="noopener">Telegram</a></li>
+      </ul>
+      <p class="footer-requisites">
+        {{ .Site.Params.ip_name }}<br>
+        ИНН: {{ .Site.Params.inn }}<br>
+        ОГРНИП: {{ .Site.Params.ogrnip }}
+      </p>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <div class="container footer-bottom__inner">
+      <span>© {{ now.Year }} · {{ .Site.Title }}</span>
+      <span>{{ .Site.Params.region }}</span>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,157 @@
+{{ define "main" }}
+
+{{/* ── HERO ─────────────────────────────────────────────── */}}
+<section class="section-hero section--dark">
+  <div class="container">
+    <div class="section-hero__content">
+      <h1>Смета: полная стоимость без сюрпризов</h1>
+      <p>Составляется на основании проекта. Приблизительную стоимость назовём на звонке.</p>
+      <div class="hero__cta" style="margin-top:28px">
+        <a href="{{ .Site.Params.whatsapp }}" class="btn btn-primary" target="_blank" rel="noopener">Узнать примерную стоимость</a>
+        <a href="/proekt/" class="btn btn-secondary">К проекту →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{/* ── ИНФОГРАФИКА: СВЯЗКА ──────────────────────────────── */}}
+<section class="section section--surface">
+  <div class="container">
+    <div class="section-header text-center">
+      <div class="section-label">Система</div>
+      <h2>Смета — часть системы, а не отдельный шаг</h2>
+    </div>
+    <div class="process-steps">
+      {{ $chain := slice "Проект" "Выезд на объект" "Смета" "Договор" }}
+      {{ range $i, $step := $chain }}
+      <div class="process-step">
+        <div class="process-step__num">{{ add $i 1 }}</div>
+        <div class="process-step__label">{{ $step }}</div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+{{/* ── ИЗ ЧЕГО СКЛАДЫВАЕТСЯ СТОИМОСТЬ ─────────────────── */}}
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Прозрачность</div>
+      <h2>Из чего складывается полная стоимость</h2>
+      <p>Большинство строителей в первичной смете показывают только работы и материалы. Остальное всплывает позже. Мы указываем всё сразу.</p>
+    </div>
+    <div class="cost-grid">
+      <div class="cost-block cost-block--main">
+        <div class="cost-block__label">Показывают все</div>
+        <div class="cost-item"><strong>Стоимость работ</strong></div>
+        <div class="cost-item"><strong>Стоимость материалов</strong></div>
+      </div>
+      <div class="cost-block cost-block--hidden">
+        <div class="cost-block__label">Часто не включают в смету</div>
+        <div class="cost-item">
+          <span class="cost-item__name">Разгрузка</span>
+          <span class="cost-item__desc">Выгрузка тяжёлых и крупногабаритных материалов с транспорта</span>
+        </div>
+        <div class="cost-item">
+          <span class="cost-item__name">Складирование</span>
+          <span class="cost-item__desc">Временное хранение и укрытие материалов на объекте</span>
+        </div>
+        <div class="cost-item">
+          <span class="cost-item__name">Временные конструкции</span>
+          <span class="cost-item__desc">Настилы, ограждения, навесы для безопасности работ</span>
+        </div>
+        <div class="cost-item">
+          <span class="cost-item__name">Удалённость объекта</span>
+          <span class="cost-item__desc">Транспортные расходы при большом расстоянии от города</span>
+        </div>
+        <div class="cost-item">
+          <span class="cost-item__name">Логистика на участке</span>
+          <span class="cost-item__desc">Наличие подъезда и возможности разворота для тяжёлого грузовика</span>
+        </div>
+        <div class="cost-item">
+          <span class="cost-item__name">Электроснабжение</span>
+          <span class="cost-item__desc">Нет электричества на участке → аренда генератора + топливо на весь период работ</span>
+        </div>
+      </div>
+    </div>
+    <p class="text-muted mt-24" style="font-size:0.9rem">
+      Мы показываем полную картину сразу — никаких «дополнительных расходов» в процессе.
+    </p>
+  </div>
+</section>
+
+{{/* ── УСЛОВИЯ НА ОБЪЕКТЕ ───────────────────────────────── */}}
+<section class="section section--surface">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Выезд на объект</div>
+      <h2>Что мы оцениваем до составления сметы</h2>
+      <p>Всё это смотрим при первом выезде — до того, как вы получили смету.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <h3>Подъезд и дорога</h3>
+        <p>Возможность проехать и развернуться для крупногабаритного тяжёлого грузовика. При отсутствии нормального подъезда — перегрузка, ручная переноска, дополнительное время.</p>
+      </div>
+      <div class="service-card">
+        <h3>Электроснабжение</h3>
+        <p>Есть ли на участке электричество. Если нет — потребуется генератор: аренда плюс топливо на весь период строительных работ. Это отдельная статья сметы.</p>
+      </div>
+      <div class="service-card">
+        <h3>Рельеф и условия</h3>
+        <p>Характер участка, наличие перепадов, доступность для техники — всё влияет на организацию работ и итоговую стоимость.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{/* ── ПОЭТАПНАЯ ОПЛАТА ─────────────────────────────────── */}}
+<section class="section">
+  <div class="container">
+    <div class="two-col two-col--centered">
+      <div>
+        <div class="section-label">Оплата</div>
+        <h2>Платите только за принятый этап</h2>
+        <p>
+          Смета разбивается по этапам — вы видите не один пугающий итог,
+          а последовательность платежей, привязанных к конкретному результату.
+        </p>
+        <p>
+          Фундамент сдан и принят → оплачен → переходим к стенам.
+          Вы платите только за то, что уже сделано и проверено.
+        </p>
+        <p>
+          Это закрывает главный страх: «заплачу всё сразу и пропадут».
+        </p>
+      </div>
+      <div class="payment-steps">
+        {{ $stages := slice "Фундамент" "Стены" "Кровля" "Отделка" }}
+        {{ range $stages }}
+        <div class="payment-step">
+          <div class="payment-step__icon">✓</div>
+          <div>
+            <strong>{{ . }}</strong>
+            <span class="text-muted"> — принят → оплачен</span>
+          </div>
+        </div>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+</section>
+
+{{/* ── CTA ──────────────────────────────────────────────── */}}
+<div class="cta-section">
+  <div class="container">
+    <h2>Хотите знать полную стоимость вашего объекта?</h2>
+    <p>Позвоните или напишите — начнём с бесплатной консультации</p>
+    <div class="cta-buttons">
+      <a href="tel:{{ .Site.Params.phone | replaceRE "[^+0-9]" "" }}" class="btn btn-primary">Позвонить</a>
+      <a href="{{ .Site.Params.whatsapp }}" class="btn btn-outline" target="_blank" rel="noopener">WhatsApp</a>
+      <a href="{{ .Site.Params.telegram }}" class="btn btn-outline" target="_blank" rel="noopener">Telegram</a>
+    </div>
+  </div>
+</div>
+
+{{ end }}
