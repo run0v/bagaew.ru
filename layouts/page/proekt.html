@@ -1,147 +1,281 @@
 {{ define "main" }}
 
-{{/* ── HERO ─────────────────────────────────────────────── */}}
+{{/* ── 1. HERO ──────────────────────────────────────────── */}}
 <section class="section-hero section--dark">
   <div class="container">
     <div class="section-hero__content">
       <h1>Проект — основа всего</h1>
-      <p>Без проекта невозможно посчитать смету. Без сметы нельзя заключить честный договор.</p>
-      <div class="hero__cta" style="margin-top:28px">
-        <a href="{{ .Site.Params.whatsapp }}" class="btn btn-primary" target="_blank" rel="noopener">Подобрать архитектора</a>
-        <a href="/smeta/" class="btn btn-secondary">Узнать примерную стоимость</a>
+      <p>
+        Без проекта невозможно посчитать смету.<br>
+        Без сметы нельзя заключить честный договор.
+      </p>
+      <div class="hero__cta" style="margin-top:32px">
+        <a href="{{ .Site.Params.whatsapp }}" class="btn btn-primary" target="_blank" rel="noopener">
+          Подобрать архитектора
+        </a>
+        <a href="#leadmagnet" class="btn btn-secondary">
+          Получить список архитекторов
+        </a>
       </div>
     </div>
   </div>
 </section>
 
-{{/* ── ИНФОГРАФИКА: ЦЕПОЧКА ────────────────────────────── */}}
+{{/* ── 2. БОЛИ — УЗНАЁТЕ СЕБЯ? ──────────────────────────── */}}
 <section class="section section--surface">
   <div class="container">
     <div class="section-header text-center">
-      <div class="section-label">Логика процесса</div>
-      <h2>Каждый этап защищает клиента</h2>
+      <div class="section-label">Узнаёте себя?</div>
+      <h2>С чем чаще всего приходят к нам</h2>
     </div>
-    <div class="process-steps">
-      {{ $chain := slice "Идея" "Проект" "Смета" "Договор" "Строительство" "Результат" }}
-      {{ range $i, $step := $chain }}
-      <div class="process-step">
-        <div class="process-step__num">{{ add $i 1 }}</div>
-        <div class="process-step__label">{{ $step }}</div>
+    <div class="pain-grid">
+
+      <div class="pain-card">
+        <div class="pain-card__num">01</div>
+        <h3>Хочу построить — не знаю с чего начать</h3>
+        <p>
+          Участок есть, желание есть, а дальше туман: кто делает проект, сколько стоит,
+          в какой последовательности всё происходит. Строители говорят разное.
+        </p>
+        <p class="pain-card__answer">
+          → Помогаем с архитектором, объясняем последовательность, считаем смету по проекту.
+        </p>
       </div>
-      {{ end }}
+
+      <div class="pain-card">
+        <div class="pain-card__num">02</div>
+        <h3>Проект есть, но строители говорят — так не построить</h3>
+        <p>
+          Архитектор нарисовал красивый дом, а прорабы при первом взгляде начинают
+          качать головой. Или смета вышла вдвое больше ожиданий.
+        </p>
+        <p class="pain-card__answer">
+          → Проверяем проект до начала работ: находим конфликты и ошибки, пока это ещё дёшево исправить.
+        </p>
+      </div>
+
+      <div class="pain-card">
+        <div class="pain-card__num">03</div>
+        <h3>Стройка встала — прораб исчез или всё пошло не так</h3>
+        <p>
+          Предыдущий подрядчик бросил объект, сделал не то, или просто пропал.
+          Теперь непонятно что можно спасти, а что переделывать.
+        </p>
+        <p class="pain-card__answer">
+          → Берёмся за сложные случаи: оцениваем что сделано, что исправить, продолжаем с того места где остановились.
+        </p>
+      </div>
+
     </div>
-    <p class="text-center text-muted mt-24" style="font-size:0.9rem">
-      Экономия на проекте — это будущие расходы на исправление ошибок в строительстве
-    </p>
   </div>
 </section>
 
-{{/* ── КОНФЛИКТ ИНТЕРЕСОВ ───────────────────────────────── */}}
+{{/* ── 3. ЧТО ВХОДИТ В ПРОЕКТ ───────────────────────────── */}}
 <section class="section">
   <div class="container">
-    <div class="section-header">
+    <div class="two-col">
+      <div>
+        <div class="section-label">Состав документации</div>
+        <h2>Что конкретно входит в проект</h2>
+        <p>
+          Многие не знают разницы между эскизным проектом, архитектурным разделом
+          и рабочей документацией. Объясняем просто.
+        </p>
+        <ul class="feature-list" style="margin-top:24px">
+          <li>Генплан участка — где стоит здание, отступы, ориентация</li>
+          <li>Поэтажные планы — расположение комнат, размеры, оси</li>
+          <li>Четыре фасада — внешний вид со всех сторон</li>
+          <li>Разрезы — внутренняя структура здания по высоте</li>
+          <li>Конструктивные узлы — как соединяются ключевые элементы</li>
+          <li>Спецификация материалов — что, сколько и каких характеристик</li>
+          <li>3D-визуализация — по желанию, до начала строительства</li>
+        </ul>
+      </div>
+      <div>
+        <div class="section-label">Типы документации</div>
+        <h2>Какой проект нужен именно вам</h2>
+        <div class="doc-types">
+          <div class="doc-type">
+            <div class="doc-type__name">Эскизный проект</div>
+            <div class="doc-type__desc">
+              Общая концепция: планировки, фасады, объём. Нужен для понимания
+              будущего дома и первичной оценки стоимости. Не достаточен для стройки.
+            </div>
+          </div>
+          <div class="doc-type">
+            <div class="doc-type__name">Архитектурный проект</div>
+            <div class="doc-type__desc">
+              Полный комплект для строительства: все чертежи, разрезы, узлы.
+              На основании этого документа считается смета и заключается договор.
+            </div>
+          </div>
+          <div class="doc-type">
+            <div class="doc-type__name">Рабочая документация</div>
+            <div class="doc-type__desc">
+              Максимальная детализация: конструктив, армирование, инженерные системы.
+              Необходима для сложных объектов и регистрации в госорганах.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{/* ── 4. НЕЗАВИСИМЫЙ АРХИТЕКТОР ────────────────────────── */}}
+<section class="section section--surface">
+  <div class="container">
+    <div class="section-header text-center">
       <div class="section-label">Конкурентное преимущество</div>
       <h2>Почему независимый архитектор — это ваша выгода</h2>
     </div>
     <div class="compare-grid">
       <div class="compare-card compare-card--bad">
-        <div class="compare-card__title">«Карманный» архитектор</div>
+        <div class="compare-card__title">«Карманный» архитектор строительной компании</div>
         <ul class="compare-list">
-          <li>Штатный сотрудник строительной компании</li>
-          <li>Работает в интересах строителя, а не заказчика</li>
-          <li>Проект делается под возможности и удобство бригады</li>
-          <li>Вы платите за проект, оптимизированный под чужую выгоду</li>
+          <li>Работает в интересах компании, а не заказчика</li>
+          <li>Проект оптимизирован под удобство и возможности бригады</li>
+          <li>Дорогие материалы и решения — там, где выгодно строителю</li>
+          <li>Ошибки в проекте невыгодно признавать — потеряет клиента</li>
         </ul>
       </div>
       <div class="compare-card compare-card--good">
-        <div class="compare-card__title">Независимый архитектор</div>
+        <div class="compare-card__title">Независимый архитектор — на вашей стороне</div>
         <ul class="compare-list">
-          <li>Представляет интересы заказчика</li>
-          <li>Строитель выявляет недостатки проекта <strong>до начала работ</strong></li>
-          <li>Каждый занимается своим делом</li>
-          <li>Экономия денег клиента — его прямая задача</li>
+          <li>Представляет только ваши интересы</li>
+          <li>Строитель выявляет ошибки проекта <strong>до начала работ</strong></li>
+          <li>Каждый занимается своим делом — архитектор проектирует, мы строим</li>
+          <li>Экономия на исправлениях — его прямой интерес</li>
         </ul>
       </div>
     </div>
+    <div class="compare-note">
+      <strong>Наш подход:</strong> знакомим вас с 3–5 архитекторами-партнёрами,
+      описываем стиль и специализацию каждого. Вы выбираете сами — мы не навязываем.
+    </div>
   </div>
 </section>
 
-{{/* ── ЧТО МЫ ОРГАНИЗУЕМ ───────────────────────────────── */}}
+{{/* ── 5. ПРОВЕРКА ПРОЕКТА ───────────────────────────────── */}}
+<section class="section">
+  <div class="container">
+    <div class="two-col two-col--centered">
+      <div>
+        <div class="section-label">Экспертиза</div>
+        <h2>Проверяем проект до начала работ — бесплатно</h2>
+        <p>
+          Архитекторы иногда увлекаются идеями, не учитывая строительную реальность.
+          Мы проверяем проект на практичность: что выполнимо, что нет,
+          где можно сэкономить без потери качества, а где экономить опасно.
+        </p>
+        <p>
+          Это называется строительная экспертиза проекта.
+          Делаем её до подписания договора — чтобы не было сюрпризов в процессе.
+        </p>
+      </div>
+      <div class="checklist-block">
+        <div class="section-label">Что проверяем</div>
+        <ul class="check-list">
+          <li>Соответствие проекта типу грунта и геологии</li>
+          <li>Правильность нагрузок на фундамент</li>
+          <li>Реалистичность конструктивных решений</li>
+          <li>Конфликты между архитектурным и конструктивным разделами</li>
+          <li>Доступность материалов в регионе</li>
+          <li>Соответствие сметы архитектурным решениям</li>
+        </ul>
+        <p class="text-muted mt-16" style="font-size:0.875rem">
+          Если 14-я гайка не налезает на 16-й болт — скажем до заливки фундамента, а не после.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{/* ── 6. СРОКИ И СТОИМОСТЬ ─────────────────────────────── */}}
 <section class="section section--surface">
   <div class="container">
     <div class="section-header">
-      <div class="section-label">Наши возможности</div>
-      <h2>Что мы можем организовать</h2>
-      <p>Бригада не привязана к одному архитектору — подбираем под вашу задачу и бюджет. Выбор всегда за вами.</p>
+      <div class="section-label">Цифры</div>
+      <h2>Сроки и стоимость</h2>
+      <p>Стоимость зависит от площади, сложности и состава документации. Ориентиры — ниже.</p>
     </div>
-    <div class="services-grid">
-      <div class="service-card">
-        <h3>Архитектурный проект</h3>
-        <p>Чертежи, планировки, фасады, разрезы — полный комплект документации</p>
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <div class="pricing-card__type">Эскизный проект</div>
+        <div class="pricing-card__price">от 30 000 ₽</div>
+        <div class="pricing-card__time">от 1–2 недель</div>
+        <div class="pricing-card__desc">
+          Планировки, фасады, общая концепция. Нужен для понимания и первичной оценки бюджета.
+        </div>
       </div>
-      <div class="service-card">
-        <h3>Рабочая документация</h3>
-        <p>Конструктив, узлы, спецификации — то, по чему строят</p>
+      <div class="pricing-card pricing-card--featured">
+        <div class="pricing-card__type">Архитектурный проект</div>
+        <div class="pricing-card__price">от 80 000 ₽</div>
+        <div class="pricing-card__time">от 3–4 недель</div>
+        <div class="pricing-card__desc">
+          Полный комплект чертежей для строительства и составления сметы. Самый востребованный формат.
+        </div>
       </div>
-      <div class="service-card">
-        <h3>3D-визуализация</h3>
-        <p>Увидеть дом до начала строительства — предотвратить дорогостоящие «хотелось бы иначе»</p>
-      </div>
-      <div class="service-card">
-        <h3>Подбор архитектора</h3>
-        <p>Знакомим с проверенными специалистами под ваш стиль и бюджет. Не навязываем.</p>
+      <div class="pricing-card">
+        <div class="pricing-card__type">Рабочая документация</div>
+        <div class="pricing-card__price">от 150 000 ₽</div>
+        <div class="pricing-card__time">от 6–8 недель</div>
+        <div class="pricing-card__desc">
+          Максимальная детализация. Для сложных объектов, нестандартных решений и регистрации.
+        </div>
       </div>
     </div>
+    <p class="text-center text-muted mt-24" style="font-size:0.875rem">
+      Точную стоимость называем после разговора — зависит от площади и задачи.
+      Позвоните или напишите — ответим в течение часа.
+    </p>
   </div>
 </section>
 
-{{/* ── СТРОИТЕЛЬНАЯ ЭКСПЕРТИЗА ─────────────────────────── */}}
+{{/* ── 7. НАДЗОР И СЛОЖНЫЕ СЛУЧАИ ───────────────────────── */}}
 <section class="section">
-  <div class="container">
-    <div class="prose">
-      <div class="section-label">Экспертиза</div>
-      <h2>Мы проверяем проект до начала работ</h2>
-      <p>
-        Архитекторы иногда увлекаются творческими идеями, не учитывая строительную реальность.
-        Наша задача — согласовать проект с практикой: что возможно, что нет, где можно сэкономить
-        без потери качества, а где экономить опасно.
-      </p>
-      <p>
-        Если 14-я гайка не налезает на 16-й болт — мы об этом скажем до заливки фундамента, а не после.
-      </p>
-    </div>
-  </div>
-</section>
-
-{{/* ── СТРОИТЕЛЬНЫЙ НАДЗОР ─────────────────────────────── */}}
-<section class="section section--surface">
   <div class="container">
     <div class="two-col">
       <div>
         <div class="section-label">Открытость</div>
-        <h2>Мы приветствуем проверку</h2>
+        <h2>Приветствуем строительный надзор</h2>
         <p>
-          Строительный надзор — это независимый специалист на стороне заказчика, который контролирует
-          качество работ на всех этапах. Большинство строителей относятся к нему настороженно.
-          Мы — иначе.
+          Строительный надзор — независимый специалист на стороне заказчика,
+          который контролирует качество работ на всех этапах.
+          Большинство строителей не любят надзор. Мы — рекомендуем его.
         </p>
         <p>
-          Мы не просто разрешаем строительный надзор — мы его рекомендуем. Двойная проверка качества
-          в интересах всех сторон. Нам нечего скрывать: работаем одинаково, есть наблюдение или нет.
+          Мы работаем одинаково — есть наблюдение или нет.
+          Двойная проверка — дополнительная гарантия для клиента,
+          которую мы только поддерживаем.
         </p>
+        <ul class="feature-list" style="margin-top:20px">
+          <li>Технический надзор — приветствуем</li>
+          <li>Авторский надзор архитектора — поддерживаем</li>
+          <li>Видеозапись процесса — на усмотрение заказчика</li>
+          <li>Фотоотчёты по этапам — делаем всегда</li>
+        </ul>
       </div>
       <div>
         <div class="section-label">Сложные случаи</div>
         <h2>Работаем там, где другие останавливаются</h2>
         <p>
-          Сменили подрядчика и досталась чужая недостройка? Проект не соответствует реальным условиям?
-          «Почти готовый» объект завис на полпути?
+          Предыдущий подрядчик исчез? Проект не соответствует реальным условиям?
+          Стройка зависла на полпути?
         </p>
         <p>
-          Берёмся за ситуации, которые другие не хотят — исправляем ошибки, продолжаем начатое,
-          приводим в соответствие проект и реальность.
+          Берёмся за ситуации, которые другие бригады не хотят брать:
+          исправляем чужие ошибки, продолжаем начатое, приводим
+          проект и реальность в соответствие.
         </p>
-        <a href="{{ .Site.Params.whatsapp }}" class="btn btn-outline mt-16" target="_blank" rel="noopener">
+        <div class="complex-cases">
+          <div class="complex-case">Продолжение стройки после смены подрядчика</div>
+          <div class="complex-case">Исправление ошибок предыдущей бригады</div>
+          <div class="complex-case">Несоответствие проекта реальным условиям</div>
+          <div class="complex-case">Доводка «почти готового» объекта</div>
+        </div>
+        <a href="{{ .Site.Params.whatsapp }}" class="btn btn-outline mt-24"
+           target="_blank" rel="noopener">
           Достались чужие ошибки? Разберёмся.
         </a>
       </div>
@@ -149,28 +283,135 @@
   </div>
 </section>
 
-{{/* ── LEAD MAGNET ─────────────────────────────────────── */}}
+{{/* ── 8. УЖЕ ЕСТЬ ПРОЕКТ? ─────────────────────────────── */}}
+<section class="section section--surface">
+  <div class="container">
+    <div class="already-have-project">
+      <div>
+        <div class="section-label">Есть готовый проект?</div>
+        <h2>Переходите сразу к смете</h2>
+        <p>
+          Если у вас уже есть архитектурный проект — отлично.
+          Мы проверим его на практичность и посчитаем полную смету:
+          работы, материалы и все сопутствующие расходы без сюрпризов.
+        </p>
+      </div>
+      <div class="already-have-project__cta">
+        <a href="/smeta/" class="btn btn-primary">Перейти к смете →</a>
+        <p class="text-muted mt-16" style="font-size:0.875rem">
+          Или позвоните — разберём проект на звонке
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{/* ── 9. FAQ ───────────────────────────────────────────── */}}
 <section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Частые вопросы</div>
+      <h2>Отвечаем на то, что гуглят чаще всего</h2>
+    </div>
+    <div class="faq-list">
+
+      <details class="faq-item">
+        <summary class="faq-question">Нужен ли проект для небольшой бани или гаража?</summary>
+        <div class="faq-answer">
+          <p>
+            Для небольших хозяйственных построек (баня, гараж, навес) архитектурный проект
+            формально не обязателен. Но даже простой эскиз с планировкой и размерами
+            помогает посчитать материалы точнее и избежать ошибок при строительстве.
+            Мы рекомендуем хотя бы схему — это занимает мало времени и стоит недорого.
+          </p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-question">Можно ли строить без проекта вообще?</summary>
+        <div class="faq-answer">
+          <p>
+            Технически — для частных домов до 500 м² уведомительный порядок, не разрешительный.
+            Но без проекта невозможно нормально посчитать смету, понять объём работ
+            и материалов, избежать ошибок при строительстве. Итог — «дополнительные расходы»
+            по ходу стройки и переделки после. Экономия на проекте оборачивается потерями на стройке.
+          </p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-question">Чем архитектурный проект отличается от рабочего?</summary>
+        <div class="faq-answer">
+          <p>
+            Архитектурный проект — это планировки, фасады, разрезы. Отвечает на вопрос «как будет выглядеть дом».
+            Рабочая документация — это детализация всего конструктива: армирование, узлы, инженерные системы.
+            Отвечает на вопрос «как это построить шаг за шагом». Для большинства частных домов
+            достаточно архитектурного проекта. Рабочую документацию заказывают для сложных объектов.
+          </p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-question">Что если у меня уже есть свой архитектор?</summary>
+        <div class="faq-answer">
+          <p>
+            Работаем с любой документацией — не важно, кто делал проект.
+            Перед началом работ проверяем проект на строительную реалистичность,
+            при необходимости согласовываем правки с вашим архитектором.
+            Авторский надзор вашего архитектора — приветствуем.
+          </p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-question">Сколько стоит проверка уже готового проекта?</summary>
+        <div class="faq-answer">
+          <p>
+            Строительную экспертизу проекта — проверку на практичность и соответствие
+            реальным условиям — делаем бесплатно в рамках подготовки к строительству.
+            Это в наших интересах: лучше найти проблему до начала работ, чем переделывать потом.
+          </p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-question">Как долго делается проект?</summary>
+        <div class="faq-answer">
+          <p>
+            Эскизный проект — 1–2 недели. Архитектурный проект — 3–4 недели.
+            Рабочая документация — 6–8 недель. Сроки зависят от сложности объекта
+            и загрузки архитектора. Называем точные сроки после разговора о задаче.
+          </p>
+        </div>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+{{/* ── 10. LEAD MAGNET ──────────────────────────────────── */}}
+<section class="section section--surface" id="leadmagnet">
   <div class="container">
     <div class="leadmagnet-block">
       <div class="leadmagnet-block__text">
         <div class="section-label">Изучаете варианты?</div>
         <h2>Получите список проверенных архитекторов</h2>
         <p>
-          Строительство — длинный цикл. Если вы ещё только изучаете рынок, оставьте контакт —
-          пришлём подборку архитекторов с описанием стиля каждого. Без спама и звонков с продажами.
+          Строительство — длинный цикл. Если вы ещё только изучаете рынок,
+          оставьте контакт — пришлём подборку архитекторов с описанием стиля каждого.
+          Без звонков с продажами.
         </p>
         <ul class="feature-list" style="margin-top:20px">
-          <li>Имя и стиль каждого архитектора</li>
-          <li>Примерный ценовой диапазон</li>
+          <li>Имя, стиль и специализация каждого архитектора</li>
+          <li>Примерный ценовой диапазон на проект</li>
           <li>Ссылки на портфолио</li>
         </ul>
       </div>
       <div class="leadmagnet-block__form">
         <form class="capture-form" id="leadmagnet-form" novalidate>
-          <input type="text"  name="name"  placeholder="Имя"      class="form-input" required autocomplete="given-name">
-          <input type="tel"   name="phone" placeholder="Телефон"  class="form-input" required autocomplete="tel">
-          <input type="email" name="email" placeholder="Email"    class="form-input" required autocomplete="email">
+          <input type="text"  name="name"  placeholder="Имя"     class="form-input" required autocomplete="given-name">
+          <input type="tel"   name="phone" placeholder="Телефон" class="form-input" required autocomplete="tel">
+          <input type="email" name="email" placeholder="Email"   class="form-input" required autocomplete="email">
           <button type="submit" class="btn btn-primary" style="width:100%">
             Получить список архитекторов
           </button>
@@ -182,112 +423,7 @@
   </div>
 </section>
 
-{{/* ── SendPulse интеграция ─────────────────────────────── */}}
-<script>
-(function() {
-  // ── Конфигурация SendPulse ─────────────────────────────
-  // Заполнить после регистрации на sendpulse.com:
-  var SP_USER_ID   = 'SENDPULSE_USER_ID';    // Настройки → API → User ID
-  var SP_SECRET    = 'SENDPULSE_SECRET';     // Настройки → API → Secret
-  var SP_LIST_ID   = 'SENDPULSE_LIST_ID';    // Рассылки → Списки → ID списка
-  // ──────────────────────────────────────────────────────
-
-  var form   = document.getElementById('leadmagnet-form');
-  var status = document.getElementById('form-status');
-
-  if (!form) return;
-
-  // Получаем токен доступа SendPulse
-  function getToken(callback) {
-    fetch('https://api.sendpulse.com/oauth/access_token', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        grant_type:    'client_credentials',
-        client_id:     SP_USER_ID,
-        client_secret: SP_SECRET
-      })
-    })
-    .then(function(r) { return r.json(); })
-    .then(function(data) { callback(null, data.access_token); })
-    .catch(function(e)  { callback(e); });
-  }
-
-  // Добавляем подписчика в список
-  function addSubscriber(token, name, phone, email, callback) {
-    fetch('https://api.sendpulse.com/addressbooks/' + SP_LIST_ID + '/emails', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + token
-      },
-      body: JSON.stringify({
-        emails: [{
-          email: email,
-          variables: [
-            { name: 'Name',  value: name  },
-            { name: 'Phone', value: phone }
-          ]
-        }]
-      })
-    })
-    .then(function(r) { return r.json(); })
-    .then(function()  { callback(null); })
-    .catch(function(e){ callback(e); });
-  }
-
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    var btn = form.querySelector('button[type="submit"]');
-    btn.disabled = true;
-    btn.textContent = 'Отправляем…';
-    status.textContent = '';
-    status.className = 'form-status';
-
-    var name  = form.name.value.trim();
-    var phone = form.phone.value.trim();
-    var email = form.email.value.trim();
-
-    // Если SendPulse не настроен — показываем сообщение (dev-заглушка)
-    if (SP_USER_ID === 'SENDPULSE_USER_ID') {
-      setTimeout(function() {
-        status.textContent = '✓ Список отправлен на ' + email;
-        status.className = 'form-status form-status--ok';
-        form.reset();
-        btn.disabled = false;
-        btn.textContent = 'Получить список архитекторов';
-      }, 800);
-      return;
-    }
-
-    getToken(function(err, token) {
-      if (err || !token) {
-        status.textContent = 'Что-то пошло не так. Напишите нам напрямую.';
-        status.className = 'form-status form-status--err';
-        btn.disabled = false;
-        btn.textContent = 'Получить список архитекторов';
-        return;
-      }
-
-      addSubscriber(token, name, phone, email, function(err2) {
-        if (err2) {
-          status.textContent = 'Ошибка при отправке. Попробуйте ещё раз.';
-          status.className = 'form-status form-status--err';
-        } else {
-          status.textContent = '✓ Список архитекторов отправлен на ' + email;
-          status.className = 'form-status form-status--ok';
-          form.reset();
-        }
-        btn.disabled = false;
-        btn.textContent = 'Получить список архитекторов';
-      });
-    });
-  });
-})();
-</script>
-
-{{/* ── CTA ──────────────────────────────────────────────── */}}
+{{/* ── CTA ФИНАЛЬНЫЙ ────────────────────────────────────── */}}
 <div class="cta-section">
   <div class="container">
     <h2>Готовы обсудить проект?</h2>
@@ -299,5 +435,61 @@
     </div>
   </div>
 </div>
+
+{{/* ── SendPulse ─────────────────────────────────────────── */}}
+<script>
+(function() {
+  var SP_USER_ID = 'SENDPULSE_USER_ID';
+  var SP_SECRET  = 'SENDPULSE_SECRET';
+  var SP_LIST_ID = 'SENDPULSE_LIST_ID';
+
+  var form   = document.getElementById('leadmagnet-form');
+  var status = document.getElementById('form-status');
+  if (!form) return;
+
+  function getToken(cb) {
+    fetch('https://api.sendpulse.com/oauth/access_token', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ grant_type: 'client_credentials', client_id: SP_USER_ID, client_secret: SP_SECRET })
+    }).then(function(r){ return r.json(); }).then(function(d){ cb(null, d.access_token); }).catch(cb);
+  }
+
+  function subscribe(token, name, phone, email, cb) {
+    fetch('https://api.sendpulse.com/addressbooks/' + SP_LIST_ID + '/emails', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+      body: JSON.stringify({ emails: [{ email: email, variables: [{ name: 'Name', value: name }, { name: 'Phone', value: phone }] }] })
+    }).then(function(){ cb(null); }).catch(cb);
+  }
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var btn = form.querySelector('button[type="submit"]');
+    btn.disabled = true; btn.textContent = 'Отправляем…'; status.textContent = ''; status.className = 'form-status';
+
+    var name = form.name.value.trim(), phone = form.phone.value.trim(), email = form.email.value.trim();
+
+    if (SP_USER_ID === 'SENDPULSE_USER_ID') {
+      setTimeout(function() {
+        status.textContent = '✓ Список отправлен на ' + email;
+        status.className = 'form-status form-status--ok';
+        form.reset(); btn.disabled = false; btn.textContent = 'Получить список архитекторов';
+      }, 800);
+      return;
+    }
+
+    getToken(function(err, token) {
+      if (err || !token) { status.textContent = 'Ошибка. Напишите нам напрямую.'; status.className = 'form-status form-status--err'; btn.disabled = false; btn.textContent = 'Получить список архитекторов'; return; }
+      subscribe(token, name, phone, email, function(err2) {
+        status.textContent = err2 ? 'Ошибка при отправке. Попробуйте ещё раз.' : '✓ Список отправлен на ' + email;
+        status.className = 'form-status ' + (err2 ? 'form-status--err' : 'form-status--ok');
+        if (!err2) form.reset();
+        btn.disabled = false; btn.textContent = 'Получить список архитекторов';
+      });
+    });
+  });
+})();
+</script>
 
 {{ end }}
