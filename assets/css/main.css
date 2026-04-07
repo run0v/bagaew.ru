@@ -463,12 +463,17 @@ p:last-child { margin-bottom: 0; }
 .project-card__photo--placeholder {
   aspect-ratio: 4 / 3;
   background: var(--surface);
+  border: 1px dashed var(--border);
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 10px;
   color: var(--text-muted);
-  font-size: 0.85rem;
+  font-size: 0.8rem;
 }
+
+.project-card__photo--placeholder svg { opacity: 0.35; }
 
 .project-card__body {
   padding: 20px;
