@@ -175,11 +175,16 @@ p:last-child { margin-bottom: 0; }
   height: 64px;
 }
 
-/* Логотип */
+/* Логотип (inline SVG в обёртке-span — чтобы CSS-анимация SVG корректно работала на iOS) */
 .logo { display: flex; align-items: center; gap: 10px; }
 .logo-img {
-  display: block;
+  display: inline-block;
   height: 36px;
+  line-height: 0;
+}
+.logo-img svg {
+  display: block;
+  height: 100%;
   width: auto;
 }
 .logo-img--footer { height: 44px; }

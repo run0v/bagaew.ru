@@ -3,7 +3,9 @@
 
     <div class="footer-about">
       <a href="/" class="logo logo--light" aria-label="{{ .Site.Title }}">
-        <img src="/logo.svg" alt="{{ .Site.Title }}" class="logo-img logo-img--footer" width="200" height="59">
+        <span class="logo-img logo-img--footer" role="img" aria-label="{{ .Site.Title }}">
+          {{ readFile "static/logo.svg" | safeHTML }}
+        </span>
       </a>
       <p class="footer-desc">
         Частная строительная бригада. Строим под ключ — от проекта до кровли.

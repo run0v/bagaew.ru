@@ -2,7 +2,9 @@
   <div class="container header-inner">
 
     <a href="/" class="logo" aria-label="{{ .Site.Title }}">
-      <img src="/logo.svg" alt="{{ .Site.Title }}" class="logo-img" width="170" height="50">
+      <span class="logo-img" role="img" aria-label="{{ .Site.Title }}">
+        {{ readFile "static/logo.svg" | safeHTML }}
+      </span>
     </a>
 
     {{/* Бургер-кнопка (Mobile) */}}
