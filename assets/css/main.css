@@ -177,14 +177,12 @@ p:last-child { margin-bottom: 0; }
 
 /* Логотип */
 .logo { display: flex; align-items: center; gap: 10px; }
-.logo-text {
-  font-family: var(--font-head);
-  font-size: 17px;
-  font-weight: 700;
-  color: #fff;
-  letter-spacing: 0.02em;
+.logo-img {
+  display: block;
+  height: 36px;
+  width: auto;
 }
-.logo-accent { color: var(--accent); }
+.logo-img--footer { height: 44px; }
 
 /* Навигация Desktop */
 .nav-list {
@@ -289,7 +287,6 @@ p:last-child { margin-bottom: 0; }
   border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 
-.footer-about .logo-text { font-size: 18px; }
 .footer-desc { margin-top: 16px; font-size: 14px; line-height: 1.7; }
 .footer-guarantee { margin-top: 16px; font-size: 13px; color: rgba(255,255,255,0.4); }
 
