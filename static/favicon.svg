@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="5975 10970 850 850" width="100%" height="100%" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; fill-rule:evenodd; clip-rule:evenodd">
+ <defs>
+  <linearGradient id="metalGradient" x1="0" y1="0" x2="1" y2="1">
+   <stop offset="0%" style="stop-color:#f0f0f0; stop-opacity:1"/>
+   <stop offset="50%" style="stop-color:#dcdcdc; stop-opacity:1"/>
+   <stop offset="100%" style="stop-color:#e6e6e6; stop-opacity:1"/>
+  </linearGradient>
+  
+  <linearGradient id="amberGradient" x1="0" y1="1" x2="1" y2="0">
+   <stop offset="0%" style="stop-color:#ffcc00; stop-opacity:1"/>
+   <stop offset="100%" style="stop-color:#ff9900; stop-opacity:1"/>
+  </linearGradient>
+  
+  <style type="text/css">
+   <![CDATA[
+    .filMet { fill: url(#metalGradient); } 
+    .filAmb { fill: url(#amberGradient); } 
+
+    /* Креативная Анимация Пульсации */
+    .pulsateCore {
+        transform-origin: center; transform-box: fill-box;
+        animation: breathAmber 2.5s ease-in-out infinite;
+    }
+    .pulsateHalo {
+        transform-origin: center; transform-box: fill-box;
+        animation: softHalo 2.5s ease-in-out infinite;
+    }
+
+    @keyframes breathAmber {
+        0%, 100% { transform: scale(0.98); opacity: 0.9; }
+        50% { transform: scale(1.02); opacity: 1; }
+    }
+    @keyframes softHalo {
+        0%, 100% { filter: blur(4px); opacity: 0.8; }
+        50% { filter: blur(6px); opacity: 1; }
+    }
+   ]]>
+  </style>
+ </defs>
+ 
+ <rect x="5975" y="10970" width="850" height="850" rx="180" fill="#141414"/>
+
+ <g>
+  <g class="filMet">
+   <path d="M6042.48 11355.23c27.63,-12.61 62.33,-46.88 84.95,-71.85l262.18 -247.33c50.28,30.6 202.81,196.82 262.54,255.59 33.84,33.29 69.66,80.33 94.3,67.37 6.85,-25.59 -51.9,-69.65 -72.36,-89.33 -41.83,-40.21 -257.93,-260.6 -284.48,-273.74 -32.59,15.93 -241.56,228.39 -288.21,270.05 -50.09,44.73 -82.98,62.19 -58.92,89.24z"/>
+   <path d="M6401.7 11339.18l95.44 260.79 -199.96 -0.02 104.52 -260.77zm-197.82 409.89l-90.33 -1.36 -0.16 -286.86c0.7,-55.81 -2.65,-71.27 -3.54,-78.59 -1.29,-10.95 -7.89,-6.64 -19.42,-7.26 -10.98,46.22 -4.24,362.22 1.47,401.62 47.1,4.24 110.42,1.89 142.45,2.1l52.19 -140.86 225 -3.06 47.4 142.82 135.64 -0.52c3.81,-65.64 2.05,-336.25 -2.85,-375.5 -4.05,-0.1 -13.46,-0.39 -18.44,-0.14 -0.77,0.04 -0.59,1.17 -0.6,2.29 -0.42,31.61 -4.6,98.09 -4.64,158.81 -0.03,54.09 4.62,131.15 -2.84,182.08 -40.58,-0.05 -62.19,-0.9 -75.58,0.22 -10.84,-17.35 -22.31,-61.51 -70.77,-193 -125.37,-340.11 -101.98,-394.37 -219.25,-62.85 -31.26,88.36 -67.11,168.84 -95.73,260.06z"/>
+  </g>
+  
+  <g class="pulsateCore filAmb">
+    <polygon class="pulsateHalo" points="6297.18,11599.95 6497.14,11599.97 6401.7,11339.18 " fill="#ffcc00" opacity="0.6"/>
+    <polygon points="6297.18,11599.95 6497.14,11599.97 6401.7,11339.18 " />
+  </g>
+ </g>
+</svg>

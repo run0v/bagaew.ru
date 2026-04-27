@@ -1,0 +1,23 @@
+{
+  "name": "Бригада Багаева — строим под ключ",
+  "short_name": "Бригада Багаева",
+  "description": "Частная строительная бригада. Строим под ключ — от проекта до кровли. Гарантия 15 лет на работы.",
+  "lang": "ru",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "theme_color": "#2C1F14",
+  "background_color": "#FAF8F4",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}

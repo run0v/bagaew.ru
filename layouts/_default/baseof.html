@@ -17,8 +17,12 @@
   {{ $css := resources.Get "css/main.css" | minify | fingerprint }}
   <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
 
-  {{/* Favicon */}}
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  {{/* Favicon / PWA */}}
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <meta name="theme-color" content="#2C1F14">
 
   {{/* Канонический URL */}}
   <link rel="canonical" href="{{ .Permalink }}">
