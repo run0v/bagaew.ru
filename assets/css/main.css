@@ -1,18 +1,18 @@
 /* ═══════════════════════════════════════════════════════════
-   БРИГАДА БАГАЕВА — Вариант Б (Тёплый)
-   #2C1F14 + терракота #C04E2E
+   БРИГАДА БАГАЕВА — Вариант A (Эспрессо + латунь)
+   #1F1813 + латунь #A8794A
    ═══════════════════════════════════════════════════════════ */
 
 /* ─── Переменные ──────────────────────────────────────────── */
 :root {
-  --primary:      #2C1F14;
-  --accent:       #C04E2E;
-  --accent-hover: #A33E22;
-  --bg:           #FAF8F4;
-  --surface:      #F0EBE3;
-  --text:         #1C1410;
-  --text-muted:   #6B5D52;
-  --border:       #DDD7CF;
+  --primary:      #1F1813;
+  --accent:       #A8794A;
+  --accent-hover: #8C6238;
+  --bg:           #F7F3EC;
+  --surface:      #EAE3D6;
+  --text:         #1A1410;
+  --text-muted:   #6E6055;
+  --border:       #D8CFC1;
 
   --font-head: 'Georgia', 'Times New Roman', serif;
   --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
@@ -21,8 +21,8 @@
   --container: 1200px;
   --gap:       24px;
 
-  --shadow-sm: 0 2px 8px rgba(44, 31, 20, 0.08);
-  --shadow-md: 0 8px 24px rgba(44, 31, 20, 0.12);
+  --shadow-sm: 0 2px 8px rgba(31, 24, 19, 0.08);
+  --shadow-md: 0 8px 24px rgba(31, 24, 19, 0.12);
 }
 
 /* ─── Сброс ───────────────────────────────────────────────── */
@@ -369,7 +369,7 @@ p:last-child { margin-bottom: 0; }
 .hero__overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to right, rgba(44,31,20,0.85) 50%, rgba(44,31,20,0.4) 100%);
+  background: linear-gradient(to right, rgba(31,24,19,0.85) 50%, rgba(31,24,19,0.4) 100%);
 }
 
 .hero__content {
@@ -389,7 +389,7 @@ p:last-child { margin-bottom: 0; }
 
 @media (max-width: 768px) {
   .hero { min-height: 420px; padding: 48px 0; }
-  .hero__overlay { background: rgba(44,31,20,0.75); }
+  .hero__overlay { background: rgba(31,24,19,0.75); }
   .hero__cta { flex-direction: column; }
   .hero__cta .btn { text-align: center; }
 }
