@@ -6,7 +6,7 @@ enableRobotsTXT = true
 enableGitInfo = false
 
 [params]
-  description = 'Частная строительная бригада. Строим под ключ — от проекта до кровли. Гарантия 15 лет на работы.'
+  description = 'Строим под ключ — от проекта до кровли. Гарантия 15 лет на работы.'
   phone       = '+7 (XXX) XXX-XX-XX'
   whatsapp    = 'https://wa.me/7XXXXXXXXXX'
   telegram    = 'https://t.me/XXXXXXXXX'
