@@ -1,0 +1,21 @@
+{{/*
+  Партиал для карточки фото в галерее. Принимает map:
+    img — Image Resource (.Resources.Match / .Resources.GetMatch)
+    alt — alt-текст
+*/}}
+{{ $img := .img }}
+{{ $alt := .alt }}
+{{/* Авто-определение ориентации по реальным размерам файла */}}
+{{ $orient := "landscape" }}
+{{ if gt $img.Height $img.Width }}
+  {{ $orient = "portrait" }}
+{{ else if eq $img.Height $img.Width }}
+  {{ $orient = "square" }}
+{{ end }}
+<div class="gallery-item gallery-item--{{ $orient }}">
+  <img src="{{ $img.RelPermalink }}"
+       alt="{{ $alt }}"
+       loading="lazy"
+       class="gallery-img"
+       width="{{ $img.Width }}" height="{{ $img.Height }}">
+</div>

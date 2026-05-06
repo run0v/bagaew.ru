@@ -27,26 +27,4 @@ stages:
     done: true
 
 cost_total: 'от 650 000 ₽'
-
-photos:
-  fundament:
-    - src: 'fundament-armirovanie.jpg'
-      alt: 'Армирование монолитной плиты до заливки'
-    - src: 'fundament-gotov.jpg'
-      alt: 'Готовая монолитная плита'
-  steny:
-    - src: 'steny-sborka.jpg'
-      alt: 'Сборка сруба из бруса, угловые соединения'
-    - src: 'steny-gotovy.jpg'
-      alt: 'Готовые стены из бруса'
-  krovlya:
-    - src: 'krovlya-stropila.jpg'
-      alt: 'Стропильная система бани до укладки черепицы'
-    - src: 'krovlya-gotova.jpg'
-      alt: 'Готовая кровля из мягкой черепицы'
-  gotovo:
-    - src: 'cover.jpg'
-      alt: 'Готовая баня из бруса, общий вид'
-    - src: 'gotovo-2.jpg'
-      alt: 'Баня из бруса, вид сбоку'
 ---

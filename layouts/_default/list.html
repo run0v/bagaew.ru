@@ -90,12 +90,20 @@
       <div class="projects-grid">
         {{ range .Pages }}
         {{ $page := . }}
+        {{ $cover := "" }}
+        {{ if .Params.cover }}{{ $cover = $page.Resources.GetMatch .Params.cover }}{{ end }}
         <a href="{{ .Permalink }}" class="project-card">
-          {{ with .Params.cover }}
-          {{ $img := $page.Resources.GetMatch . }}
-          <img class="project-card__photo" src="{{ if $img }}{{ $img.RelPermalink }}{{ else }}{{ . }}{{ end }}" alt="{{ $page.Title }}" loading="lazy">
+          {{ if $cover }}
+          <img class="project-card__photo" src="{{ $cover.RelPermalink }}" alt="{{ $page.Title }}" loading="lazy">
           {{ else }}
-          <div class="project-card__photo--placeholder">Фото объекта</div>
+          <div class="project-card__photo--placeholder">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="2"/>
+              <circle cx="8.5" cy="8.5" r="1.5"/>
+              <polyline points="21,15 16,10 5,21"/>
+            </svg>
+            Фото ожидается
+          </div>
           {{ end }}
           <div class="project-card__body">
             <h3>{{ .Title }}</h3>

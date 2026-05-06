@@ -32,39 +32,4 @@ stages:
     done: true
 
 cost_total: 'от 1 235 000 ₽'
-
-photos:
-  planirovka:
-    - src: 'planirovka-1.jpg'
-      alt: 'Разбивка осей здания на участке'
-    - src: 'planirovka-2.jpg'
-      alt: 'Геодезический прибор при выносе осей'
-  fundament:
-    - src: 'fundament-armirovanie.jpg'
-      alt: 'Армирование ленточного фундамента до заливки бетона'
-    - src: 'fundament-zalivka.jpg'
-      alt: 'Заливка бетона в опалубку'
-    - src: 'fundament-gotov.jpg'
-      alt: 'Готовый ленточный фундамент после снятия опалубки'
-  steny:
-    - src: 'steny-kladka.jpg'
-      alt: 'Кладка газобетонных блоков, первые ряды'
-    - src: 'steny-process.jpg'
-      alt: 'Стены в процессе кладки, второй этаж'
-    - src: 'steny-korobka.jpg'
-      alt: 'Готовая коробка дома до начала кровельных работ'
-  krovlya:
-    - src: 'krovlya-stropila.jpg'
-      alt: 'Стропильная система до укладки кровельного материала'
-    - src: 'krovlya-ukladka.jpg'
-      alt: 'Укладка металлочерепицы'
-    - src: 'krovlya-gotova.jpg'
-      alt: 'Готовая кровля из металлочерепицы'
-  gotovo:
-    - src: 'cover.jpg'
-      alt: 'Готовый дом из газобетона, вид спереди'
-    - src: 'gotovo-2.jpg'
-      alt: 'Дом из газобетона, вид сбоку'
-    - src: 'gotovo-3.jpg'
-      alt: 'Дом из газобетона, вид наискосок'
 ---

@@ -27,24 +27,4 @@ stages:
     done: true
 
 cost_total: 'от 980 000 ₽'
-
-photos:
-  fundament:
-    - src: 'fundament-svai.jpg'
-      alt: 'Винтовые сваи под каркасную баню, обвязка брусом'
-  steny:
-    - src: 'steny-karkas.jpg'
-      alt: 'Сборка каркаса стен'
-    - src: 'steny-utepleniye.jpg'
-      alt: 'Утепление каркаса минеральной ватой'
-  krovlya:
-    - src: 'krovlya-stropila.jpg'
-      alt: 'Стропильная система до укладки черепицы'
-    - src: 'krovlya-gotova.jpg'
-      alt: 'Готовая кровля из мягкой черепицы'
-  gotovo:
-    - src: 'cover.jpg'
-      alt: 'Готовая каркасная баня, общий вид'
-    - src: 'gotovo-2.jpg'
-      alt: 'Каркасная баня, вид сбоку'
 ---

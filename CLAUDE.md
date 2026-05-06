@@ -37,12 +37,29 @@ CI: `.github/workflows/hugo.yml` собирает на Hugo extended **0.128.0**
    - В `list.html` для секций `fundament` / `steny` / `krovlya` / `gotovye-proekty` отдельные блоки HERO, заголовков и сеток.
    - Для `steny` страницы группируются по `Params.group` со значениями ровно `"Каркас"`, `"Деревянные"`, `"Каменные и монолит"` — front matter дочерних страниц должен содержать одно из этих значений, иначе страница не попадёт в сетку. Дополнительно ожидается `group_weight` для сортировки групп: `1` (Каркас), `2` (Деревянные), `3` (Каменные и монолит).
 
-3. **Кейсы** (`content/gotovye-proekty/<slug>/index.md`) — готовые объекты (раздел «Готовые проекты», URL `/gotovye-proekty/`). Каждый кейс — **Hugo Leaf Bundle**: каталог со `index.md` и фотографиями рядом. Используют `single.html`, но с особой структурой front matter:
+3. **Кейсы** (`content/gotovye-proekty/<slug>/index.md`) — готовые объекты (раздел «Готовые проекты», URL `/gotovye-proekty/`). Каждый кейс — **Hugo Leaf Bundle**: каталог со `index.md` и фотографиями рядом. Структура папки:
+   ```
+   <slug>/
+   ├── index.md           ← фронтматтер
+   ├── cover.jpg          ← обложка для карточек и hero страницы кейса
+   ├── hod-rabot/         ← фото хода работ по этапам (опц.)
+   │   ├── planirovka/
+   │   ├── fundament/
+   │   ├── steny/
+   │   ├── krovlya/
+   │   └── gotovo/
+   └── galereya/          ← общая фотогалерея готового объекта (опц.)
+   ```
+   Шаблон `single.html` авто-собирает фото через `.Resources.Match "hod-rabot/<stage>/*"` — **имена файлов в фронтматтере не перечисляются**.
+   Front matter:
    - `stages` — массив этапов (`name`, `url`, `detail`, `cost_display`, `done`) → блок «Стоимость по этапам».
-   - `photos` — словарь по ключам `planirovka`, `fundament`, `steny`, `krovlya`, `gotovo` (это **этапы стройки**, ключ `gotovo` здесь не связан с именем секции; каждый ключ → массив `{src, alt}`) → галерея с CSS-табами (radio + label, без JS).
-   - `cover`, `area`, `region`, `materials`, `cost_total` — карточка кейса в `list.html` и на главной.
-   - В `cover` и `photos[*].src` пишутся **только имена файлов** (`cover.jpg`, `fundament-armirovanie.jpg` и т.п.) — шаблоны разрешают их через `.Resources.GetMatch` и публикуют файлы по URL `/gotovye-proekty/<slug>/<filename>`. Если ресурс не найден, есть fallback: значение используется как есть (можно подложить абсолютный URL для legacy-кейсов).
-   Образец: `content/gotovye-proekty/dom-iz-gazobetona-120m2/index.md`.
+   - `cover` — имя файла обложки (`'cover.jpg'`); шаблоны разрешают через `.Resources.GetMatch` в URL `/gotovye-proekty/<slug>/cover.jpg`.
+   - `area`, `region`, `materials`, `cost_total` — карточка на главной, мета-полоса в hero страницы кейса.
+   Поведение секций галереи в `single.html`:
+   - «Фотоотчёт» (табы по этапам) показывается, **только** если хоть в одной подпапке `hod-rabot/<stage>/` есть файлы. Этапы без файлов в табы не попадают.
+   - «Фотогалерея» (общие виды) показывается, только если в `galereya/*` есть файлы.
+   - Ориентация ячейки (`landscape`/`portrait`/`square`) определяется автоматически из `.Width`/`.Height` файла. Партиал — `layouts/partials/gallery-item.html`.
+   Образец: `content/gotovye-proekty/karkasnaya-banya-18m2/`.
 
 Главная страница рендерится через `layouts/index.html` (не `list.html`). Она показывает первые 3 кейса из секции `gotovye-proekty` через `where .Site.RegularPages "Section" "gotovye-proekty" | first 3`.
 
