@@ -16,7 +16,7 @@
         <div class="section-label" style="color:rgba(255,255,255,0.5)">Виды кровли</div>
         <h1>Кровля: монтаж под любой проект и бюджет</h1>
         <p>Металлочерепица, мягкая черепица, фальц, профнастил, плоская кровля — работаем с любым материалом.</p>
-      {{ else if eq .Section "gotovo" }}
+      {{ else if eq .Section "gotovye-proekty" }}
         <div class="section-label" style="color:rgba(255,255,255,0.5)">Завершённые проекты</div>
         <h1>Готовые объекты</h1>
         <p>Реальные объекты с разбивкой стоимости по каждому этапу работ.</p>
@@ -25,7 +25,7 @@
         {{ with .Params.description }}<p>{{ . }}</p>{{ end }}
       {{ end }}
       <div class="hero__cta" style="margin-top:28px">
-        <a href="{{ .Site.Params.whatsapp }}" class="btn btn-primary" target="_blank" rel="noopener">
+        <a href="{{ .Site.Params.telegram }}" class="btn btn-primary" target="_blank" rel="noopener">
           {{ if eq .Section "fundament" }}Помогите выбрать фундамент
           {{ else if eq .Section "steny" }}Помогите выбрать материал
           {{ else if eq .Section "krovlya" }}Рассчитать стоимость кровли
@@ -85,13 +85,15 @@
 <section class="section">
   <div class="container">
 
-    {{ if eq .Section "gotovo" }}
+    {{ if eq .Section "gotovye-proekty" }}
       {{/* Кейсы — карточки с ценой */}}
       <div class="projects-grid">
         {{ range .Pages }}
+        {{ $page := . }}
         <a href="{{ .Permalink }}" class="project-card">
           {{ with .Params.cover }}
-          <img class="project-card__photo" src="{{ . }}" alt="{{ $.Title }}" loading="lazy">
+          {{ $img := $page.Resources.GetMatch . }}
+          <img class="project-card__photo" src="{{ if $img }}{{ $img.RelPermalink }}{{ else }}{{ . }}{{ end }}" alt="{{ $page.Title }}" loading="lazy">
           {{ else }}
           <div class="project-card__photo--placeholder">Фото объекта</div>
           {{ end }}
@@ -225,8 +227,8 @@
     <p>Расскажите о задаче — подберём решение и назовём стоимость</p>
     <div class="cta-buttons">
       <a href="tel:{{ .Site.Params.phone | replaceRE "[^+0-9]" "" }}" class="btn btn-primary">Позвонить</a>
-      <a href="{{ .Site.Params.whatsapp }}" class="btn btn-outline" target="_blank" rel="noopener">WhatsApp</a>
       <a href="{{ .Site.Params.telegram }}" class="btn btn-outline" target="_blank" rel="noopener">Telegram</a>
+      <a href="mailto:{{ .Site.Params.email }}" class="btn btn-outline">Email</a>
     </div>
   </div>
 </div>

@@ -37,7 +37,9 @@
     "description": "{{ .Site.Params.description }}",
     "url": "{{ .Site.BaseURL }}",
     "telephone": "{{ .Site.Params.phone }}",
-    "areaServed": "{{ .Site.Params.region }}"
+    "email": "{{ .Site.Params.email }}",
+    "areaServed": "{{ .Site.Params.region }}",
+    "sameAs": ["{{ .Site.Params.telegram }}"]
   }
   </script>
   {{ end }}

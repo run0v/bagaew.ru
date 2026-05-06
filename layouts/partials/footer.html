@@ -29,13 +29,19 @@
       <h4 class="footer-nav__title">Контакты</h4>
       <ul>
         <li><a href="tel:{{ .Site.Params.phone | replaceRE "[^+0-9]" "" }}">{{ .Site.Params.phone }}</a></li>
-        <li><a href="{{ .Site.Params.whatsapp }}" target="_blank" rel="noopener">WhatsApp</a></li>
-        <li><a href="{{ .Site.Params.telegram }}" target="_blank" rel="noopener">Telegram</a></li>
+        <li><a href="{{ .Site.Params.telegram }}" target="_blank" rel="noopener">Telegram {{ .Site.Params.telegram_handle }}</a></li>
+        <li><a href="mailto:{{ .Site.Params.email }}">{{ .Site.Params.email }}</a></li>
       </ul>
       <p class="footer-requisites">
         {{ .Site.Params.ip_name }}<br>
         ИНН: {{ .Site.Params.inn }}<br>
-        ОГРНИП: {{ .Site.Params.ogrnip }}
+        ОГРНИП: {{ .Site.Params.ogrnip }}<br>
+        ОКПО: {{ .Site.Params.okpo }}<br>
+        ОКАТО: {{ .Site.Params.okato }}<br>
+        ОКТМО: {{ .Site.Params.oktmo }}<br>
+        ОКОПФ: {{ .Site.Params.okopf }}<br>
+        ОКОГУ: {{ .Site.Params.okogu }}<br>
+        ОКФС: {{ .Site.Params.okfs }}
       </p>
     </div>
 
@@ -43,7 +49,7 @@
 
   <div class="footer-bottom">
     <div class="container footer-bottom__inner">
-      <span>© {{ now.Year }} · {{ .Site.Title }}</span>
+      <span>© {{ now.Year }} · Все права защищены</span>
       <span>{{ .Site.Params.region }}</span>
     </div>
   </div>

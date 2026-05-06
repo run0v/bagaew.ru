@@ -1,7 +1,18 @@
 {{ define "main" }}
 
 {{/* ── HERO СТРАНИЦЫ ────────────────────────────────────── */}}
-<section class="section-hero section--dark">
+{{ $isCase := eq .Section "gotovye-proekty" }}
+{{ $coverURL := "" }}
+{{ if and $isCase .Params.cover }}
+  {{ $img := .Resources.GetMatch .Params.cover }}
+  {{ if $img }}{{ $coverURL = $img.RelPermalink }}{{ else }}{{ $coverURL = .Params.cover }}{{ end }}
+{{ end }}
+
+<section class="section-hero section--dark{{ if $coverURL }} section-hero--with-cover{{ end }}">
+  {{ if $coverURL }}
+  <img class="section-hero__bg" src="{{ $coverURL }}" alt="" aria-hidden="true">
+  <div class="section-hero__overlay" aria-hidden="true"></div>
+  {{ end }}
   <div class="container">
     <div class="section-hero__content">
       {{ if .Parent }}
@@ -13,6 +24,33 @@
       {{ end }}
       <h1>{{ .Title }}</h1>
       {{ with .Params.description }}<p>{{ . }}</p>{{ end }}
+
+      {{/* Мета-полоса: только для кейсов и только если поля есть */}}
+      {{ if $isCase }}
+      <div class="case-meta">
+        {{ with .Params.area }}
+        <div class="case-meta__item">
+          <span class="case-meta__label">Площадь</span>
+          <span class="case-meta__value">{{ . }} м²</span>
+        </div>
+        {{ end }}
+        {{ with .Params.region }}
+        <div class="case-meta__item">
+          <span class="case-meta__label">Регион</span>
+          <span class="case-meta__value">{{ . }}</span>
+        </div>
+        {{ end }}
+        {{ with .Params.cost_total }}
+        <div class="case-meta__item case-meta__item--accent">
+          <span class="case-meta__label">Стоимость</span>
+          <span class="case-meta__value">{{ . }}</span>
+        </div>
+        {{ end }}
+      </div>
+      {{ with .Params.materials }}
+      <div class="case-materials">{{ . }}</div>
+      {{ end }}
+      {{ end }}
     </div>
   </div>
 </section>
@@ -92,11 +130,22 @@
         <div class="gallery-panel" id="panel-{{ $tab.key }}">
           <div class="gallery-grid">
             {{ range $photos }}
-            <div class="gallery-item">
-              <img src="{{ .src }}"
+            {{ $img := $.Resources.GetMatch .src }}
+            {{/* Авто-определение ориентации: portrait если высота > ширины,
+                 square при равенстве, landscape по умолчанию.
+                 Можно переопределить вручную через .orientation в front matter. */}}
+            {{ $orient := .orientation }}
+            {{ if and (not $orient) $img }}
+              {{ if gt $img.Height $img.Width }}{{ $orient = "portrait" }}
+              {{ else if eq $img.Height $img.Width }}{{ $orient = "square" }}
+              {{ else }}{{ $orient = "landscape" }}{{ end }}
+            {{ end }}
+            <div class="gallery-item{{ with $orient }} gallery-item--{{ . }}{{ end }}">
+              <img src="{{ if $img }}{{ $img.RelPermalink }}{{ else }}{{ .src }}{{ end }}"
                    alt="{{ .alt }}"
                    loading="lazy"
                    class="gallery-img"
+                   {{ with $img }}width="{{ .Width }}" height="{{ .Height }}"{{ end }}
                    onerror="this.parentElement.classList.add('gallery-item--placeholder'); this.style.display='none'">
               {{/* Заглушка — видна если фото ещё нет */}}
               <div class="gallery-placeholder" aria-hidden="true">
@@ -160,8 +209,8 @@
     <p>Расскажите о задаче — ответим в течение часа</p>
     <div class="cta-buttons">
       <a href="tel:{{ .Site.Params.phone | replaceRE "[^+0-9]" "" }}" class="btn btn-primary">Позвонить</a>
-      <a href="{{ .Site.Params.whatsapp }}" class="btn btn-outline" target="_blank" rel="noopener">WhatsApp</a>
       <a href="{{ .Site.Params.telegram }}" class="btn btn-outline" target="_blank" rel="noopener">Telegram</a>
+      <a href="mailto:{{ .Site.Params.email }}" class="btn btn-outline">Email</a>
     </div>
   </div>
 </div>

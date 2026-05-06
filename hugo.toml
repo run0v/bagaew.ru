@@ -6,16 +6,23 @@ enableRobotsTXT = true
 enableGitInfo = false
 
 [params]
-  description = 'Строим под ключ — от проекта до кровли. Гарантия 15 лет на работы.'
-  phone       = '+7 (XXX) XXX-XX-XX'
-  whatsapp    = 'https://wa.me/7XXXXXXXXXX'
-  telegram    = 'https://t.me/XXXXXXXXX'
-  region      = 'Подмосковье'
-  experience  = '10'
-  guarantee   = '15'
-  ip_name     = 'ИП Багаев __'
-  inn         = 'XXXXXXXXXX'
-  ogrnip      = 'XXXXXXXXXXXXX'
+  description     = 'Строим под ключ — от проекта до кровли. Гарантия 15 лет на работы.'
+  phone           = '+7 (921) 802-02-42'
+  telegram        = 'https://t.me/DBliveproject'
+  telegram_handle = '@DBliveproject'
+  email           = 'Karelia-stroybagaew@yandex.ru'
+  region          = 'Подмосковье'
+  experience      = '10'
+  guarantee       = '15'
+  ip_name         = 'ИП Багаев Дмитрий Сергеевич'
+  inn             = '101390365520'
+  ogrnip          = '323100000020645'
+  okpo            = '2025026439'
+  okato           = '86224501000'
+  oktmo           = '86624101001'
+  okopf           = '50102'
+  okogu           = '4210015'
+  okfs            = '16'
 
 [markup]
   [markup.goldmark]
@@ -63,6 +70,6 @@ enableGitInfo = false
   weight     = 7
 
 [[menus.main]]
-  name       = 'Готово'
-  url        = '/gotovo/'
+  name       = 'Готовые проекты'
+  url        = '/gotovye-proekty/'
   weight     = 8

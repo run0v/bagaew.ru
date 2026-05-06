@@ -7,7 +7,7 @@
       <h1>Смета: полная стоимость без сюрпризов</h1>
       <p>Составляется на основании проекта. Приблизительную стоимость назовём на звонке.</p>
       <div class="hero__cta" style="margin-top:28px">
-        <a href="{{ .Site.Params.whatsapp }}" class="btn btn-primary" target="_blank" rel="noopener">Узнать примерную стоимость</a>
+        <a href="{{ .Site.Params.telegram }}" class="btn btn-primary" target="_blank" rel="noopener">Узнать примерную стоимость</a>
         <a href="/proekt/" class="btn btn-secondary">К проекту →</a>
       </div>
     </div>
@@ -148,8 +148,8 @@
     <p>Позвоните или напишите — начнём с бесплатной консультации</p>
     <div class="cta-buttons">
       <a href="tel:{{ .Site.Params.phone | replaceRE "[^+0-9]" "" }}" class="btn btn-primary">Позвонить</a>
-      <a href="{{ .Site.Params.whatsapp }}" class="btn btn-outline" target="_blank" rel="noopener">WhatsApp</a>
       <a href="{{ .Site.Params.telegram }}" class="btn btn-outline" target="_blank" rel="noopener">Telegram</a>
+      <a href="mailto:{{ .Site.Params.email }}" class="btn btn-outline">Email</a>
     </div>
   </div>
 </div>

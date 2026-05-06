@@ -22,10 +22,10 @@
         Полная смета до начала — без скрытых расходов.
       </p>
       <div class="hero__cta">
-        <a href="{{ .Site.Params.whatsapp }}" class="btn btn-primary" target="_blank" rel="noopener">
+        <a href="{{ .Site.Params.telegram }}" class="btn btn-primary" target="_blank" rel="noopener">
           Обсудить проект
         </a>
-        <a href="/gotovo/" class="btn btn-secondary">
+        <a href="/gotovye-proekty/" class="btn btn-secondary">
           Готовые объекты →
         </a>
       </div>
@@ -114,7 +114,7 @@
 </section>
 
 {{/* ── ПОСЛЕДНИЕ ОБЪЕКТЫ ────────────────────────────────── */}}
-{{ $projects := where .Site.RegularPages "Section" "gotovo" }}
+{{ $projects := where .Site.RegularPages "Section" "gotovye-proekty" }}
 {{ if $projects }}
 <section class="section">
   <div class="container">
@@ -125,11 +125,13 @@
     </div>
     <div class="projects-grid">
       {{ range first 3 $projects }}
+      {{ $page := . }}
       <a href="{{ .Permalink }}" class="project-card">
         {{ with .Params.cover }}
+        {{ $img := $page.Resources.GetMatch . }}
         <img class="project-card__photo"
-             src="{{ . }}"
-             alt="{{ $.Title }}"
+             src="{{ if $img }}{{ $img.RelPermalink }}{{ else }}{{ . }}{{ end }}"
+             alt="{{ $page.Title }}"
              loading="lazy"
              onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div class="project-card__photo--placeholder" style="display:none">
@@ -168,7 +170,7 @@
       {{ end }}
     </div>
     <div class="text-center mt-32">
-      <a href="/gotovo/" class="btn btn-outline">Все объекты →</a>
+      <a href="/gotovye-proekty/" class="btn btn-outline">Все объекты →</a>
     </div>
   </div>
 </section>
@@ -290,11 +292,11 @@
       <a href="tel:{{ .Site.Params.phone | replaceRE "[^+0-9]" "" }}" class="btn btn-primary">
         Позвонить
       </a>
-      <a href="{{ .Site.Params.whatsapp }}" class="btn btn-outline" target="_blank" rel="noopener">
-        WhatsApp
-      </a>
       <a href="{{ .Site.Params.telegram }}" class="btn btn-outline" target="_blank" rel="noopener">
         Telegram
+      </a>
+      <a href="mailto:{{ .Site.Params.email }}" class="btn btn-outline">
+        Email
       </a>
     </div>
   </div>

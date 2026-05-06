@@ -10,7 +10,7 @@
         Без сметы нельзя заключить честный договор.
       </p>
       <div class="hero__cta" style="margin-top:32px">
-        <a href="{{ .Site.Params.whatsapp }}" class="btn btn-primary" target="_blank" rel="noopener">
+        <a href="{{ .Site.Params.telegram }}" class="btn btn-primary" target="_blank" rel="noopener">
           Подобрать архитектора
         </a>
         <a href="#leadmagnet" class="btn btn-secondary">
@@ -274,7 +274,7 @@
           <div class="complex-case">Несоответствие проекта реальным условиям</div>
           <div class="complex-case">Доводка «почти готового» объекта</div>
         </div>
-        <a href="{{ .Site.Params.whatsapp }}" class="btn btn-outline mt-24"
+        <a href="{{ .Site.Params.telegram }}" class="btn btn-outline mt-24"
            target="_blank" rel="noopener">
           Достались чужие ошибки? Разберёмся.
         </a>
@@ -430,8 +430,8 @@
     <p>Расскажите о задаче — поможем с архитектором и дадим примерную стоимость</p>
     <div class="cta-buttons">
       <a href="tel:{{ .Site.Params.phone | replaceRE "[^+0-9]" "" }}" class="btn btn-primary">Позвонить</a>
-      <a href="{{ .Site.Params.whatsapp }}" class="btn btn-outline" target="_blank" rel="noopener">WhatsApp</a>
       <a href="{{ .Site.Params.telegram }}" class="btn btn-outline" target="_blank" rel="noopener">Telegram</a>
+      <a href="mailto:{{ .Site.Params.email }}" class="btn btn-outline">Email</a>
     </div>
   </div>
 </div>

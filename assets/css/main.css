@@ -8,6 +8,7 @@
   --primary:      #1F1813;
   --accent:       #A8794A;
   --accent-hover: #8C6238;
+  --accent-red:   #D63E36;       /* насыщенный красный без оранжевого уклона */
   --bg:           #F7F3EC;
   --surface:      #EAE3D6;
   --text:         #1A1410;
@@ -878,6 +879,105 @@ p:last-child { margin-bottom: 0; }
   .section-hero { padding: 40px 0 32px; }
 }
 
+/* ─── Hero с обложкой (только для кейсов) ─────────────────── */
+.section-hero--with-cover {
+  position: relative;
+  overflow: hidden;
+  padding: 96px 0 64px;        /* выше визуальный объём */
+  min-height: 420px;
+}
+
+.section-hero--with-cover .container {
+  position: relative;
+  z-index: 2;
+}
+
+.section-hero__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.section-hero__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    to right,
+    rgba(31,24,19,0.85) 0%,
+    rgba(31,24,19,0.70) 35%,
+    rgba(31,24,19,0.30) 70%,
+    rgba(31,24,19,0.10) 100%
+  );
+}
+
+@media (max-width: 768px) {
+  .section-hero--with-cover {
+    padding: 64px 0 40px;
+    min-height: 320px;
+  }
+  .section-hero__overlay {
+    /* На мобилке текст по центру/широко — затемнение по вертикали */
+    background: linear-gradient(
+      to bottom,
+      rgba(31,24,19,0.45) 0%,
+      rgba(31,24,19,0.75) 50%,
+      rgba(31,24,19,0.85) 100%
+    );
+  }
+}
+
+/* ─── Мета-полоса карточки кейса в hero ───────────────────── */
+.case-meta {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 8px 32px;
+  margin-top: 24px;
+  padding: 16px 24px;
+  background: rgba(0, 0, 0, 0.45);
+  border-radius: var(--radius);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+.case-meta__item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.case-meta__label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: rgba(255,255,255,0.55);
+}
+
+.case-meta__value {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.case-meta__item--accent .case-meta__value {
+  color: var(--accent-red);
+}
+
+.case-materials {
+  margin-top: 16px;
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.6;
+}
+
+@media (max-width: 480px) {
+  .case-meta { gap: 8px 20px; }
+  .case-meta__value { font-size: 1rem; }
+}
+
 /* ─── Этапы объекта (Готово) ──────────────────────────────── */
 .stages-list {
   display: flex;
@@ -989,6 +1089,7 @@ p:last-child { margin-bottom: 0; }
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 12px;
+  align-items: start;          /* ячейки разной ориентации не растягиваются по строке */
 }
 
 .gallery-item {
@@ -996,8 +1097,12 @@ p:last-child { margin-bottom: 0; }
   border-radius: var(--radius);
   overflow: hidden;
   background: var(--surface);
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 4 / 3;          /* по умолчанию — горизонтальное (landscape) */
 }
+
+.gallery-item--landscape { aspect-ratio: 4 / 3; }
+.gallery-item--square    { aspect-ratio: 1 / 1; }
+.gallery-item--portrait  { aspect-ratio: 3 / 4; }
 
 .gallery-img {
   width: 100%;
