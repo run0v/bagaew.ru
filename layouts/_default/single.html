@@ -55,7 +55,10 @@
   </div>
 </section>
 
-{{/* ── БЛОК ЭТАПОВ И СТОИМОСТИ (только для Готово) ─────── */}}
+{{/* ── БЛОК ЭТАПОВ И СТОИМОСТИ — временно отключён ────────
+     TODO: вернуть, когда понадобится показывать разбивку цены
+     по этапам. Поля stages / cost_display / cost_total
+     остаются в фронтматтере кейсов — раскомментировать.
 {{ if .Params.stages }}
 <section class="section section--surface">
   <div class="container">
@@ -85,8 +88,25 @@
     {{ end }}
   </div>
 </section>
+{{ end }}
+*/}}
 
-{{ end }}{{/* конец блока stages */}}
+{{/* ── ОПИСАНИЕ ПРОЕКТА (Markdown body) ──────────────────── */}}
+{{ if .Content }}
+<section class="section section--surface">
+  <div class="container">
+    {{ if $isCase }}
+    <div class="section-header">
+      <div class="section-label">О проекте</div>
+      <h2>Описание</h2>
+    </div>
+    {{ end }}
+    <div class="prose">
+      {{ .Content }}
+    </div>
+  </div>
+</section>
+{{ end }}
 
 {{/* ── ФОТООТЧЁТ ПО ЭТАПАМ — собираем из hod-rabot/<stage>/ ─ */}}
 {{ $stages := slice
@@ -98,7 +118,9 @@
 }}
 {{ $stagesWithPhotos := slice }}
 {{ range $stages }}
-  {{ $imgs := $.Resources.Match (printf "hod-rabot/%s/*" .key) }}
+  {{ $matched := $.Resources.Match (printf "hod-rabot/%s/*" .key) }}
+  {{/* Берём только image-ресурсы — отсеиваем .gitkeep, .DS_Store и т.п. */}}
+  {{ $imgs := where $matched "ResourceType" "image" }}
   {{ if $imgs }}
     {{ $stagesWithPhotos = $stagesWithPhotos | append (dict "key" .key "label" .label "imgs" $imgs) }}
   {{ end }}
@@ -140,7 +162,8 @@
 {{ end }}
 
 {{/* ── ФОТОГАЛЕРЕЯ — общие виды объекта из galereya/ ─────── */}}
-{{ $galleryImgs := .Resources.Match "galereya/*" }}
+{{ $galleryMatched := .Resources.Match "galereya/*" }}
+{{ $galleryImgs := where $galleryMatched "ResourceType" "image" }}
 {{ if $galleryImgs }}
 <section class="section section--surface">
   <div class="container">
@@ -153,15 +176,6 @@
         {{ partial "gallery-item.html" (dict "img" . "alt" $.Title) }}
       {{ end }}
     </div>
-  </div>
-</section>
-{{ end }}
-
-{{/* ── ОСНОВНОЙ КОНТЕНТ (если есть) ───────────────────── */}}
-{{ if .Content }}
-<section class="section">
-  <div class="container prose">
-    {{ .Content }}
   </div>
 </section>
 {{ end }}
