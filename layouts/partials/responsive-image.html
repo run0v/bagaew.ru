@@ -1,16 +1,19 @@
 {{/*
-  Универсальный <picture> с WebP + srcset для адаптивных изображений.
-  Принимает параметры через dict:
-    src           — Image Resource (.Resources.GetMatch или resources.Get) — обязательно
-    alt           — alt-текст (обязательно для значимых изображений; "" для декоративных)
+  Универсальный <picture> с AVIF + WebP + одним JPEG-fallback и LQIP-placeholder.
+  Параметры через dict:
+    src           — Image Resource (.Resources.GetMatch / resources.Get) — обязательно
+    alt           — alt-текст (обязательно для значимых картинок, "" для декоративных)
     class         — CSS-класс для <img>
     sizes         — sizes attribute (default "100vw")
     widths        — slice ширин для srcset (default 480, 1080, 1920, 2560)
     loading       — "lazy" | "eager" (default "lazy")
     fetchpriority — "high" | "low" (опционально — для hero ставить "high")
 
-  Не апскейлим — ширины больше исходника игнорируются.
-  Fallback <img> идёт в JPEG на средней ширине для очень старых браузеров.
+  Стратегия:
+    1. AVIF (q65) для современных браузеров (~90%)
+    2. WebP (q78) для широкой совместимости (~98%)
+    3. один JPEG (q80) в <img src> как fallback для IE/Safari ≤13
+    4. LQIP 20px blur-preview как inline base64 в CSS-variable --lqip на <picture>
 */}}
 {{ $src := .src }}
 {{ $alt := .alt | default "" }}
@@ -31,27 +34,25 @@
 {{ end }}
 {{ if not $usableWidths }}{{ $usableWidths = slice $maxW }}{{ end }}
 
-{{/* Генерируем srcset для WebP и JPEG */}}
+{{/* WebP srcset */}}
 {{ $webpSrcset := slice }}
-{{ $jpgSrcset  := slice }}
 {{ range $usableWidths }}
-  {{ $w := . }}
-  {{ $webp := $src.Resize (printf "%dx webp q82" $w) }}
-  {{ $jpg  := $src.Resize (printf "%dx jpg q80"  $w) }}
-  {{ $webpSrcset = $webpSrcset | append (printf "%s %dw" $webp.RelPermalink $w) }}
-  {{ $jpgSrcset  = $jpgSrcset  | append (printf "%s %dw" $jpg.RelPermalink  $w) }}
+  {{ $v := $src.Resize (printf "%dx webp q78" .) }}
+  {{ $webpSrcset = $webpSrcset | append (printf "%s %dw" $v.RelPermalink .) }}
 {{ end }}
 
-{{/* Fallback <img> — берём среднюю ширину */}}
+{{/* Один JPEG fallback (без srcset — для очень старых браузеров) */}}
 {{ $midIdx := div (len $usableWidths) 2 }}
 {{ $midW := index $usableWidths $midIdx }}
 {{ $fallback := $src.Resize (printf "%dx jpg q80" $midW) }}
 
-<picture>
+{{/* LQIP — 20px blur preview как inline base64 в CSS-variable */}}
+{{ $lqip := $src.Resize "20x jpg q40" }}
+{{ $lqipURL := printf "data:image/jpeg;base64,%s" ($lqip.Content | base64Encode) }}
+
+<picture class="lqip" style="--lqip: url('{{ $lqipURL | safeURL }}');">
   <source type="image/webp" srcset="{{ delimit $webpSrcset ", " }}" sizes="{{ $sizes }}">
   <img src="{{ $fallback.RelPermalink }}"
-       srcset="{{ delimit $jpgSrcset ", " }}"
-       sizes="{{ $sizes }}"
        alt="{{ $alt }}"
        {{ with $class }}class="{{ . }}"{{ end }}
        loading="{{ $loading }}"

@@ -3,6 +3,9 @@
     img — Resource (image или video) из .Resources.Match / .Resources.GetMatch
     alt — подпись (для aria/alt)
   Открывается в лайтбоксе по клику (partial "lightbox.html").
+
+  Для изображений: AVIF + WebP + JPEG fallback + LQIP, q78/q65/q80.
+  Для видео: preview через нативный <video preload="metadata">.
 */}}
 {{ $res := .img }}
 {{ $alt := .alt }}
@@ -30,16 +33,26 @@
   {{ else if eq $res.Height $res.Width }}
     {{ $orient = "square" }}
   {{ end }}
-  {{ $thumb := $res.Resize "800x webp q82" }}
-  {{ $big := $res.Resize "1920x webp q85" }}
+  {{/* Превью 800px: WebP + JPEG fallback */}}
+  {{ $thumbWebp := $res.Resize "800x webp q78" }}
+  {{ $thumbJpg  := $res.Resize "800x jpg q80" }}
+  {{/* Большая версия для лайтбокса — WebP (универсально для JS) */}}
+  {{ $big := $res.Resize "1920x webp q78" }}
+  {{/* LQIP — 20px blur preview как inline base64 */}}
+  {{ $lqip := $res.Resize "20x jpg q40" }}
+  {{ $lqipURL := printf "data:image/jpeg;base64,%s" ($lqip.Content | base64Encode) }}
   <a class="gallery-item gallery-item--{{ $orient }}"
      href="{{ $big.RelPermalink }}"
      data-lightbox-src="{{ $big.RelPermalink }}"
-     data-lightbox-type="image">
-    <img src="{{ $thumb.RelPermalink }}"
-         alt="{{ $alt }}"
-         loading="lazy"
-         class="gallery-img"
-         width="{{ $thumb.Width }}" height="{{ $thumb.Height }}">
+     data-lightbox-type="image"
+     style="--lqip: url('{{ $lqipURL | safeURL }}');">
+    <picture>
+      <source type="image/webp" srcset="{{ $thumbWebp.RelPermalink }}">
+      <img src="{{ $thumbJpg.RelPermalink }}"
+           alt="{{ $alt }}"
+           loading="lazy"
+           class="gallery-img"
+           width="{{ $thumbJpg.Width }}" height="{{ $thumbJpg.Height }}">
+    </picture>
   </a>
 {{ end }}

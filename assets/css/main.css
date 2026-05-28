@@ -1573,3 +1573,47 @@ p:last-child { margin-bottom: 0; }
 @media (max-width: 768px) {
   .lightbox__close { top: 8px; right: 8px; }
 }
+
+/* ═══════════════════════════════════════════════════════════
+   LQIP — Low Quality Image Placeholder.
+   Базовый <picture class="lqip"> получает 20px blur preview как
+   background через CSS-variable --lqip. Когда настоящий <img>
+   загружен, он непрозрачен и перекрывает background.
+   ═══════════════════════════════════════════════════════════ */
+picture.lqip {
+  display: block;
+  background-image: var(--lqip, none);
+  background-size: cover;
+  background-position: center;
+  background-color: var(--surface);
+}
+/* Hero и cover кейса: picture растягивается на родителя,
+   img внутри сохраняет свой absolute-cover стиль */
+.hero > picture.lqip,
+.section-hero--with-cover > picture.lqip {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Галерея фото: LQIP-background на самой ссылке-обёртке.
+   .gallery-item имеет aspect-ratio и overflow:hidden,
+   <picture> внутри занимает всё пространство, img — обычное responsive. */
+.gallery-item {
+  background-image: var(--lqip, none);
+  background-size: cover;
+  background-position: center;
+  background-color: var(--surface);
+}
+.gallery-item picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.gallery-item .gallery-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
