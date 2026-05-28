@@ -1,7 +1,7 @@
 {{ define "main" }}
 
 {{/* ── HERO СТРАНИЦЫ ────────────────────────────────────── */}}
-{{ $isCase := eq .Section "gotovye-proekty" }}
+{{ $isCase := or (eq .Type "gotovye-proekty") (eq .Type "gotovye-fundamenty") }}
 {{ $coverURL := "" }}
 {{ if and $isCase .Params.cover }}
   {{ $img := .Resources.GetMatch .Params.cover }}
@@ -120,7 +120,7 @@
 {{ range $stages }}
   {{ $matched := $.Resources.Match (printf "hod-rabot/%s/*" .key) }}
   {{/* Берём только image-ресурсы — отсеиваем .gitkeep, .DS_Store и т.п. */}}
-  {{ $imgs := where $matched "ResourceType" "image" }}
+  {{ $imgs := where $matched "ResourceType" "in" (slice "image" "video") }}
   {{ if $imgs }}
     {{ $stagesWithPhotos = $stagesWithPhotos | append (dict "key" .key "label" .label "imgs" $imgs) }}
   {{ end }}
@@ -163,7 +163,7 @@
 
 {{/* ── ФОТОГАЛЕРЕЯ — общие виды объекта из galereya/ ─────── */}}
 {{ $galleryMatched := .Resources.Match "galereya/*" }}
-{{ $galleryImgs := where $galleryMatched "ResourceType" "image" }}
+{{ $galleryImgs := where $galleryMatched "ResourceType" "in" (slice "image" "video") }}
 {{ if $galleryImgs }}
 <section class="section section--surface">
   <div class="container">
@@ -182,7 +182,8 @@
 
 {{/* ── ДРУГИЕ СТРАНИЦЫ РАЗДЕЛА ─────────────────────────── */}}
 {{ with .Parent }}
-{{ if .Pages }}
+{{ $others := where .Pages "Permalink" "ne" $.Permalink }}
+{{ if $others }}
 <section class="section section--surface">
   <div class="container">
     <div class="section-header">
@@ -190,19 +191,20 @@
       <h2>{{ .Title }}</h2>
     </div>
     <div class="services-grid">
-      {{ range .Pages }}
-      {{ if ne .Permalink $.Permalink }}
+      {{ range $others }}
       <a href="{{ .Permalink }}" class="service-card">
         <h3>{{ .Title }}</h3>
         {{ with .Params.description }}<p>{{ . }}</p>{{ end }}
       </a>
-      {{ end }}
       {{ end }}
     </div>
   </div>
 </section>
 {{ end }}
 {{ end }}
+
+{{/* ── ЛАЙТБОКС для галереи (фото + видео) ─────────────── */}}
+{{ partial "lightbox.html" . }}
 
 {{/* ── CTA ──────────────────────────────────────────────── */}}
 <div class="cta-section">

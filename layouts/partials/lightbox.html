@@ -1,0 +1,40 @@
+{{/*
+  Лайтбокс для галереи: открывает фото и видео в модальном окне.
+  Использует нативный <dialog>. На браузерах без поддержки JS просто
+  откроется href ссылки (фолбэк).
+  Подключать один раз на странице — например в single.html.
+*/}}
+<dialog id="lightbox" class="lightbox" aria-label="Просмотр медиа">
+  <button type="button" class="lightbox__close" data-lightbox-close aria-label="Закрыть">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+  <div class="lightbox__stage"></div>
+</dialog>
+
+<script>
+(function() {
+  var dialog = document.getElementById('lightbox');
+  if (!dialog || typeof dialog.showModal !== 'function') return;
+  var stage = dialog.querySelector('.lightbox__stage');
+
+  document.addEventListener('click', function(e) {
+    if (e.target.closest('[data-lightbox-close]')) { dialog.close(); return; }
+    var trigger = e.target.closest('[data-lightbox-src]');
+    if (!trigger) return;
+    e.preventDefault();
+    var src  = trigger.dataset.lightboxSrc;
+    var type = trigger.dataset.lightboxType;
+    stage.innerHTML = type === 'video'
+      ? '<video src="' + src + '" controls autoplay playsinline preload="metadata"></video>'
+      : '<img src="' + src + '" alt="">';
+    dialog.showModal();
+  });
+
+  dialog.addEventListener('close', function() { stage.innerHTML = ''; });
+
+  // Клик по бэкдропу <dialog> (за пределами .lightbox__stage и кнопки)
+  dialog.addEventListener('click', function(e) {
+    if (e.target === dialog) dialog.close();
+  });
+})();
+</script>

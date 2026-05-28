@@ -1,21 +1,45 @@
 {{/*
-  Партиал для карточки фото в галерее. Принимает map:
-    img — Image Resource (.Resources.Match / .Resources.GetMatch)
-    alt — alt-текст
+  Карточка медиа-ресурса в галерее. Принимает map:
+    img — Resource (image или video) из .Resources.Match / .Resources.GetMatch
+    alt — подпись (для aria/alt)
+  Открывается в лайтбоксе по клику (partial "lightbox.html").
 */}}
-{{ $img := .img }}
+{{ $res := .img }}
 {{ $alt := .alt }}
-{{/* Авто-определение ориентации по реальным размерам файла */}}
-{{ $orient := "landscape" }}
-{{ if gt $img.Height $img.Width }}
-  {{ $orient = "portrait" }}
-{{ else if eq $img.Height $img.Width }}
-  {{ $orient = "square" }}
+
+{{ if eq $res.ResourceType "video" }}
+  <a class="gallery-item gallery-item--landscape gallery-item--video"
+     href="{{ $res.RelPermalink }}"
+     data-lightbox-src="{{ $res.RelPermalink }}"
+     data-lightbox-type="video"
+     aria-label="Открыть видео — {{ $alt }}">
+    <video class="gallery-item__preview"
+           src="{{ $res.RelPermalink }}#t=0.5"
+           preload="metadata"
+           muted
+           playsinline
+           tabindex="-1"></video>
+    <span class="gallery-item__play" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+    </span>
+  </a>
+{{ else }}
+  {{ $orient := "landscape" }}
+  {{ if gt $res.Height $res.Width }}
+    {{ $orient = "portrait" }}
+  {{ else if eq $res.Height $res.Width }}
+    {{ $orient = "square" }}
+  {{ end }}
+  {{ $thumb := $res.Resize "800x webp q82" }}
+  {{ $big := $res.Resize "1920x webp q85" }}
+  <a class="gallery-item gallery-item--{{ $orient }}"
+     href="{{ $big.RelPermalink }}"
+     data-lightbox-src="{{ $big.RelPermalink }}"
+     data-lightbox-type="image">
+    <img src="{{ $thumb.RelPermalink }}"
+         alt="{{ $alt }}"
+         loading="lazy"
+         class="gallery-img"
+         width="{{ $thumb.Width }}" height="{{ $thumb.Height }}">
+  </a>
 {{ end }}
-<div class="gallery-item gallery-item--{{ $orient }}">
-  <img src="{{ $img.RelPermalink }}"
-       alt="{{ $alt }}"
-       loading="lazy"
-       class="gallery-img"
-       width="{{ $img.Width }}" height="{{ $img.Height }}">
-</div>

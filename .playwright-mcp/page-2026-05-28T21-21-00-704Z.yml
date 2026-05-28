@@ -1,0 +1,164 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "Бригада Багаева" [ref=e4] [cursor=pointer]:
+        - /url: /
+        - img "Бригада Багаева" [ref=e5]:
+          - img [ref=e6]
+      - navigation "Основная навигация" [ref=e15]:
+        - list [ref=e16]:
+          - listitem [ref=e17]:
+            - link "Главная" [ref=e18] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=e19]:
+            - link "Проект" [ref=e20] [cursor=pointer]:
+              - /url: /proekt/
+          - listitem [ref=e21]:
+            - link "Смета" [ref=e22] [cursor=pointer]:
+              - /url: /smeta/
+          - listitem [ref=e23]:
+            - link "Планировка" [ref=e24] [cursor=pointer]:
+              - /url: /planirovka/
+          - listitem [ref=e25]:
+            - link "Фундамент" [ref=e26] [cursor=pointer]:
+              - /url: /fundament/
+          - listitem [ref=e27]:
+            - link "Стены" [ref=e28] [cursor=pointer]:
+              - /url: /steny/
+          - listitem [ref=e29]:
+            - link "Кровля" [ref=e30] [cursor=pointer]:
+              - /url: /krovlya/
+          - listitem [ref=e31]:
+            - link "Готовые проекты" [ref=e32] [cursor=pointer]:
+              - /url: /gotovye-proekty/
+  - main [ref=e33]:
+    - generic [ref=e38]:
+      - generic [ref=e39]: Виды фундаментов
+      - 'heading "Фундамент: то, что нельзя переделать" [level=1] [ref=e40]'
+      - paragraph [ref=e41]: Правильный выбор типа фундамента — это решение принимается один раз на весь срок жизни дома.
+      - link "Помогите выбрать фундамент" [ref=e43] [cursor=pointer]:
+        - /url: https://t.me/DBliveproject
+    - generic [ref=e46]:
+      - generic [ref=e47]: Главный принцип
+      - heading "Фундамент — не самая дорогая статья. Но самая важная." [level=2] [ref=e48]
+      - paragraph [ref=e49]:
+        - text: Крышу перекроют. Стены переложат. Планировку изменят. Фундамент — нет.
+        - text: Это единственный элемент здания, ошибка в котором стоит всего объекта.
+    - generic [ref=e51]:
+      - generic [ref=e52]:
+        - link "Ленточный фундамент Монолитный ленточный фундамент под дома из газобетона, кирпича, бруса. Глубина — ниже точки промерзания." [ref=e53] [cursor=pointer]:
+          - /url: http://localhost:1313/fundament/lentochnyy/
+          - heading "Ленточный фундамент" [level=3] [ref=e54]
+          - paragraph [ref=e55]: Монолитный ленточный фундамент под дома из газобетона, кирпича, бруса. Глубина — ниже точки промерзания.
+        - link "Плитный фундамент Монолитная железобетонная плита — универсальный фундамент для любых грунтов и тяжёлых построек." [ref=e56] [cursor=pointer]:
+          - /url: http://localhost:1313/fundament/plitnyy/
+          - heading "Плитный фундамент" [level=3] [ref=e57]
+          - paragraph [ref=e58]: Монолитная железобетонная плита — универсальный фундамент для любых грунтов и тяжёлых построек.
+        - link "УШП — утеплённая шведская плита УШП совмещает фундамент, утепление и систему тёплого пола. Минимум теплопотерь, максимум комфорта." [ref=e59] [cursor=pointer]:
+          - /url: http://localhost:1313/fundament/ushp/
+          - heading "УШП — утеплённая шведская плита" [level=3] [ref=e60]
+          - paragraph [ref=e61]: УШП совмещает фундамент, утепление и систему тёплого пола. Минимум теплопотерь, максимум комфорта.
+      - paragraph [ref=e63]:
+        - strong [ref=e64]: Свайно-ростверковый фундамент
+        - text: — выполняем через субподрядчиков для сложных грунтов. Обсуждается индивидуально.
+    - generic [ref=e67]:
+      - generic [ref=e68]:
+        - img [ref=e70]
+        - heading "15 лет гарантии на работы" [level=4] [ref=e72]
+        - paragraph [ref=e73]: На качество монтажа — не на материалы
+      - generic [ref=e74]:
+        - img [ref=e76]
+        - heading "Фотоотчёты по этапам" [level=4] [ref=e79]
+        - paragraph [ref=e80]: Особенно важны для скрытых работ — армирование и стропилка до закрытия
+      - generic [ref=e81]:
+        - img [ref=e83]
+        - heading "Приветствуем строительный надзор" [level=4] [ref=e86]
+        - paragraph [ref=e87]: Нам нечего скрывать
+      - generic [ref=e88]:
+        - img [ref=e90]
+        - heading "Оплата поэтапно" [level=4] [ref=e92]
+        - paragraph [ref=e93]: Платите только за принятый этап работ
+    - generic [ref=e95]:
+      - generic [ref=e96]:
+        - generic [ref=e97]: Сданные объекты
+        - heading "Готовые фундаменты" [level=2] [ref=e98]
+        - paragraph [ref=e99]: Реальные сданные фундаменты с фотографиями и итоговой стоимостью
+      - link "Плита 9 × 9 м Плита 9 × 9 м 81 м² · Подмосковье Монолитная железобетонная плита с двойным армированием 810 000 ₽ Смотреть проект →" [ref=e101] [cursor=pointer]:
+        - /url: http://localhost:1313/fundament/gotovye-fundamenty/plita-9x9/
+        - img "Плита 9 × 9 м" [ref=e102]
+        - generic [ref=e103]:
+          - heading "Плита 9 × 9 м" [level=3] [ref=e104]
+          - generic [ref=e105]: 81 м² · Подмосковье
+          - generic [ref=e106]: Монолитная железобетонная плита с двойным армированием
+          - generic [ref=e107]: 810 000 ₽
+          - generic [ref=e108]: Смотреть проект →
+      - link "Все фундаменты →" [ref=e110] [cursor=pointer]:
+        - /url: /fundament/gotovye-fundamenty/
+    - generic [ref=e112]:
+      - heading "Остались вопросы?" [level=2] [ref=e113]
+      - paragraph [ref=e114]: Расскажите о задаче — подберём решение и назовём стоимость
+      - generic [ref=e115]:
+        - link "Позвонить" [ref=e116] [cursor=pointer]:
+          - /url: tel:+79218020242
+        - link "Telegram" [ref=e117] [cursor=pointer]:
+          - /url: https://t.me/DBliveproject
+        - link "Email" [ref=e118] [cursor=pointer]:
+          - /url: mailto:Karelia-stroybagaew@yandex.ru
+  - contentinfo [ref=e119]:
+    - generic [ref=e120]:
+      - generic [ref=e121]:
+        - link "Бригада Багаева" [ref=e122] [cursor=pointer]:
+          - /url: /
+          - img "Бригада Багаева" [ref=e123]:
+            - img [ref=e124]
+        - paragraph [ref=e133]: "Строим под ключ — от проекта до кровли. Работаем честно: полная смета до начала, поэтапная оплата, фотоотчёты."
+        - paragraph [ref=e134]: "Гарантия на работы: 15 лет"
+      - navigation "Навигация в футере" [ref=e135]:
+        - heading "Разделы" [level=4] [ref=e136]
+        - list [ref=e137]:
+          - listitem [ref=e138]:
+            - link "Проект" [ref=e139] [cursor=pointer]:
+              - /url: /proekt/
+          - listitem [ref=e140]:
+            - link "Смета" [ref=e141] [cursor=pointer]:
+              - /url: /smeta/
+          - listitem [ref=e142]:
+            - link "Планировка" [ref=e143] [cursor=pointer]:
+              - /url: /planirovka/
+          - listitem [ref=e144]:
+            - link "Фундамент" [ref=e145] [cursor=pointer]:
+              - /url: /fundament/
+          - listitem [ref=e146]:
+            - link "Стены" [ref=e147] [cursor=pointer]:
+              - /url: /steny/
+          - listitem [ref=e148]:
+            - link "Кровля" [ref=e149] [cursor=pointer]:
+              - /url: /krovlya/
+          - listitem [ref=e150]:
+            - link "Готовые проекты" [ref=e151] [cursor=pointer]:
+              - /url: /gotovye-proekty/
+      - generic [ref=e152]:
+        - heading "Контакты" [level=4] [ref=e153]
+        - list [ref=e154]:
+          - listitem [ref=e155]:
+            - link "+7 (921) 802-02-42" [ref=e156] [cursor=pointer]:
+              - /url: tel:+79218020242
+          - listitem [ref=e157]:
+            - link "Telegram @DBliveproject" [ref=e158] [cursor=pointer]:
+              - /url: https://t.me/DBliveproject
+          - listitem [ref=e159]:
+            - link "Karelia-stroybagaew@yandex.ru" [ref=e160] [cursor=pointer]:
+              - /url: mailto:Karelia-stroybagaew@yandex.ru
+        - paragraph [ref=e161]:
+          - text: ИП Багаев Дмитрий Сергеевич
+          - text: "ИНН: 101390365520"
+          - text: "ОГРНИП: 323100000020645"
+          - text: "ОКПО: 2025026439"
+          - text: "ОКАТО: 86224501000"
+          - text: "ОКТМО: 86624101001"
+          - text: "ОКОПФ: 50102"
+          - text: "ОКОГУ: 4210015"
+          - text: "ОКФС: 16"
+    - generic [ref=e163]:
+      - generic [ref=e164]: © 2026 · Все права защищены
+      - generic [ref=e165]: Подмосковье
