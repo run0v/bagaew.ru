@@ -1,0 +1,144 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "Бригада Багаева" [ref=e4] [cursor=pointer]:
+        - /url: /
+        - img "Бригада Багаева" [ref=e5]:
+          - img [ref=e6]
+      - navigation "Основная навигация" [ref=e15]:
+        - list [ref=e16]:
+          - listitem [ref=e17]:
+            - link "Главная" [ref=e18] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=e19]:
+            - link "Проект" [ref=e20] [cursor=pointer]:
+              - /url: /proekt/
+          - listitem [ref=e21]:
+            - link "Смета" [ref=e22] [cursor=pointer]:
+              - /url: /smeta/
+          - listitem [ref=e23]:
+            - link "Планировка" [ref=e24] [cursor=pointer]:
+              - /url: /planirovka/
+          - listitem [ref=e25]:
+            - link "Фундамент" [ref=e26] [cursor=pointer]:
+              - /url: /fundament/
+          - listitem [ref=e27]:
+            - link "Стены" [ref=e28] [cursor=pointer]:
+              - /url: /steny/
+          - listitem [ref=e29]:
+            - link "Кровля" [ref=e30] [cursor=pointer]:
+              - /url: /krovlya/
+          - listitem [ref=e31]:
+            - link "Готовые проекты" [ref=e32] [cursor=pointer]:
+              - /url: /gotovye-proekty/
+  - main [ref=e33]:
+    - generic [ref=e37]:
+      - link "← Готовые фундаменты" [ref=e39] [cursor=pointer]:
+        - /url: http://localhost:1313/fundament/gotovye-fundamenty/
+      - heading "Плита 9 × 9 м" [level=1] [ref=e40]
+      - paragraph [ref=e41]: Монолитная железобетонная плита 9 × 9 м (81 м²) — готовое решение под лёгкий дом, баню или гараж.
+      - generic [ref=e42]:
+        - generic [ref=e43]:
+          - generic [ref=e44]: Площадь
+          - generic [ref=e45]: 81 м²
+        - generic [ref=e46]:
+          - generic [ref=e47]: Регион
+          - generic [ref=e48]: Подмосковье
+        - generic [ref=e49]:
+          - generic [ref=e50]: Стоимость
+          - generic [ref=e51]: 810 000 ₽
+      - generic [ref=e52]: Монолитная железобетонная плита с двойным армированием
+    - generic [ref=e54]:
+      - generic [ref=e55]:
+        - generic [ref=e56]: Фотоотчёт
+        - heading "Фото по этапам работ" [level=2] [ref=e57]
+      - generic [ref=e58]:
+        - generic [ref=e60] [cursor=pointer]: Фундамент
+        - generic [ref=e62]:
+          - link "Плита 9 × 9 м — Фундамент" [ref=e63]:
+            - /url: /fundament/gotovye-fundamenty/plita-9x9/hod-rabot/fundament/foto-01_hu_d8123cb64d84b0e0.webp
+            - img "Плита 9 × 9 м — Фундамент" [ref=e64]
+          - link "Открыть видео — Плита 9 × 9 м — Фундамент" [ref=e65] [cursor=pointer]:
+            - /url: /fundament/gotovye-fundamenty/plita-9x9/hod-rabot/fundament/video-01.mp4
+            - generic:
+              - img
+          - link "Открыть видео — Плита 9 × 9 м — Фундамент" [ref=e66] [cursor=pointer]:
+            - /url: /fundament/gotovye-fundamenty/plita-9x9/hod-rabot/fundament/video-02.mp4
+            - generic:
+              - img
+          - link "Открыть видео — Плита 9 × 9 м — Фундамент" [ref=e67] [cursor=pointer]:
+            - /url: /fundament/gotovye-fundamenty/plita-9x9/hod-rabot/fundament/video-03.mp4
+            - generic:
+              - img
+          - link "Открыть видео — Плита 9 × 9 м — Фундамент" [ref=e68] [cursor=pointer]:
+            - /url: /fundament/gotovye-fundamenty/plita-9x9/hod-rabot/fundament/video-04.mp4
+            - generic:
+              - img
+    - generic [ref=e70]:
+      - heading "Нужна консультация или смета?" [level=2] [ref=e71]
+      - paragraph [ref=e72]: Расскажите о задаче — ответим в течение часа
+      - generic [ref=e73]:
+        - link "Позвонить" [ref=e74] [cursor=pointer]:
+          - /url: tel:+79218020242
+        - link "Telegram" [ref=e75] [cursor=pointer]:
+          - /url: https://t.me/DBliveproject
+        - link "Email" [ref=e76] [cursor=pointer]:
+          - /url: mailto:Karelia-stroybagaew@yandex.ru
+  - contentinfo [ref=e77]:
+    - generic [ref=e78]:
+      - generic [ref=e79]:
+        - link "Бригада Багаева" [ref=e80] [cursor=pointer]:
+          - /url: /
+          - img "Бригада Багаева" [ref=e81]:
+            - img [ref=e82]
+        - paragraph [ref=e91]: "Строим под ключ — от проекта до кровли. Работаем честно: полная смета до начала, поэтапная оплата, фотоотчёты."
+        - paragraph [ref=e92]: "Гарантия на работы: 15 лет"
+      - navigation "Навигация в футере" [ref=e93]:
+        - heading "Разделы" [level=4] [ref=e94]
+        - list [ref=e95]:
+          - listitem [ref=e96]:
+            - link "Проект" [ref=e97] [cursor=pointer]:
+              - /url: /proekt/
+          - listitem [ref=e98]:
+            - link "Смета" [ref=e99] [cursor=pointer]:
+              - /url: /smeta/
+          - listitem [ref=e100]:
+            - link "Планировка" [ref=e101] [cursor=pointer]:
+              - /url: /planirovka/
+          - listitem [ref=e102]:
+            - link "Фундамент" [ref=e103] [cursor=pointer]:
+              - /url: /fundament/
+          - listitem [ref=e104]:
+            - link "Стены" [ref=e105] [cursor=pointer]:
+              - /url: /steny/
+          - listitem [ref=e106]:
+            - link "Кровля" [ref=e107] [cursor=pointer]:
+              - /url: /krovlya/
+          - listitem [ref=e108]:
+            - link "Готовые проекты" [ref=e109] [cursor=pointer]:
+              - /url: /gotovye-proekty/
+      - generic [ref=e110]:
+        - heading "Контакты" [level=4] [ref=e111]
+        - list [ref=e112]:
+          - listitem [ref=e113]:
+            - link "+7 (921) 802-02-42" [ref=e114] [cursor=pointer]:
+              - /url: tel:+79218020242
+          - listitem [ref=e115]:
+            - link "Telegram @DBliveproject" [ref=e116] [cursor=pointer]:
+              - /url: https://t.me/DBliveproject
+          - listitem [ref=e117]:
+            - link "Karelia-stroybagaew@yandex.ru" [ref=e118] [cursor=pointer]:
+              - /url: mailto:Karelia-stroybagaew@yandex.ru
+        - paragraph [ref=e119]:
+          - text: ИП Багаев Дмитрий Сергеевич
+          - text: "ИНН: 101390365520"
+          - text: "ОГРНИП: 323100000020645"
+          - text: "ОКПО: 2025026439"
+          - text: "ОКАТО: 86224501000"
+          - text: "ОКТМО: 86624101001"
+          - text: "ОКОПФ: 50102"
+          - text: "ОКОГУ: 4210015"
+          - text: "ОКФС: 16"
+    - generic [ref=e121]:
+      - generic [ref=e122]: © 2026 · Все права защищены
+      - generic [ref=e123]: Подмосковье

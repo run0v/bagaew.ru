@@ -2,15 +2,21 @@
 
 {{/* ── HERO СТРАНИЦЫ ────────────────────────────────────── */}}
 {{ $isCase := or (eq .Type "gotovye-proekty") (eq .Type "gotovye-fundamenty") }}
-{{ $coverURL := "" }}
+{{ $coverImg := "" }}
 {{ if and $isCase .Params.cover }}
-  {{ $img := .Resources.GetMatch .Params.cover }}
-  {{ with $img }}{{ $coverURL = .RelPermalink }}{{ end }}
+  {{ $coverImg = .Resources.GetMatch .Params.cover }}
 {{ end }}
 
-<section class="section-hero section--dark{{ if $coverURL }} section-hero--with-cover{{ end }}">
-  {{ if $coverURL }}
-  <img class="section-hero__bg" src="{{ $coverURL }}" alt="" aria-hidden="true">
+<section class="section-hero section--dark{{ if $coverImg }} section-hero--with-cover{{ end }}">
+  {{ if $coverImg }}
+  {{ partial "responsive-image.html" (dict
+       "src" $coverImg
+       "alt" ""
+       "class" "section-hero__bg"
+       "sizes" "100vw"
+       "loading" "eager"
+       "fetchpriority" "high"
+  ) }}
   <div class="section-hero__overlay" aria-hidden="true"></div>
   {{ end }}
   <div class="container">

@@ -1,0 +1,61 @@
+{{/*
+  Универсальный <picture> с WebP + srcset для адаптивных изображений.
+  Принимает параметры через dict:
+    src           — Image Resource (.Resources.GetMatch или resources.Get) — обязательно
+    alt           — alt-текст (обязательно для значимых изображений; "" для декоративных)
+    class         — CSS-класс для <img>
+    sizes         — sizes attribute (default "100vw")
+    widths        — slice ширин для srcset (default 480, 1080, 1920, 2560)
+    loading       — "lazy" | "eager" (default "lazy")
+    fetchpriority — "high" | "low" (опционально — для hero ставить "high")
+
+  Не апскейлим — ширины больше исходника игнорируются.
+  Fallback <img> идёт в JPEG на средней ширине для очень старых браузеров.
+*/}}
+{{ $src := .src }}
+{{ $alt := .alt | default "" }}
+{{ $class := .class | default "" }}
+{{ $sizes := .sizes | default "100vw" }}
+{{ $widths := .widths | default (slice 480 1080 1920 2560) }}
+{{ $loading := .loading | default "lazy" }}
+{{ $fp := .fetchpriority | default "" }}
+
+{{ if not $src }}{{ errorf "partial responsive-image: missing src (Image Resource required)" }}{{ end }}
+
+{{/* Не апскейлим — режем widths по исходной ширине */}}
+{{ $maxW := $src.Width }}
+{{ $usableWidths := slice }}
+{{ range $widths }}
+  {{ $w := int . }}
+  {{ if le $w $maxW }}{{ $usableWidths = $usableWidths | append $w }}{{ end }}
+{{ end }}
+{{ if not $usableWidths }}{{ $usableWidths = slice $maxW }}{{ end }}
+
+{{/* Генерируем srcset для WebP и JPEG */}}
+{{ $webpSrcset := slice }}
+{{ $jpgSrcset  := slice }}
+{{ range $usableWidths }}
+  {{ $w := . }}
+  {{ $webp := $src.Resize (printf "%dx webp q82" $w) }}
+  {{ $jpg  := $src.Resize (printf "%dx jpg q80"  $w) }}
+  {{ $webpSrcset = $webpSrcset | append (printf "%s %dw" $webp.RelPermalink $w) }}
+  {{ $jpgSrcset  = $jpgSrcset  | append (printf "%s %dw" $jpg.RelPermalink  $w) }}
+{{ end }}
+
+{{/* Fallback <img> — берём среднюю ширину */}}
+{{ $midIdx := div (len $usableWidths) 2 }}
+{{ $midW := index $usableWidths $midIdx }}
+{{ $fallback := $src.Resize (printf "%dx jpg q80" $midW) }}
+
+<picture>
+  <source type="image/webp" srcset="{{ delimit $webpSrcset ", " }}" sizes="{{ $sizes }}">
+  <img src="{{ $fallback.RelPermalink }}"
+       srcset="{{ delimit $jpgSrcset ", " }}"
+       sizes="{{ $sizes }}"
+       alt="{{ $alt }}"
+       {{ with $class }}class="{{ . }}"{{ end }}
+       loading="{{ $loading }}"
+       {{ with $fp }}fetchpriority="{{ . }}"{{ end }}
+       width="{{ $fallback.Width }}"
+       height="{{ $fallback.Height }}">
+</picture>

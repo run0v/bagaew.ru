@@ -2,16 +2,19 @@
 
 {{/* ── HERO ─────────────────────────────────────────────── */}}
 <section class="hero section--dark">
-  {{/* Фото Hero — заменить после получения от заказчика (см. 04_контент.md, фото 1.1) */}}
-  <picture>
-    <source media="(max-width: 768px)" srcset="/images/hero/main/main_1080.jpg">
-    <img class="hero__bg"
-         src="/images/hero/main/main_2000.jpg"
-         alt="Готовый дом — лучший объект бригады Багаева"
-         loading="eager"
-         onerror="this.outerHTML='<div class=\'hero__bg hero__bg--placeholder\'>Фото лучшего объекта — ожидается от заказчика</div>'"
-         >
-  </picture>
+  {{ $heroImg := resources.Get "images/hero/main.jpg" }}
+  {{ if $heroImg }}
+    {{ partial "responsive-image.html" (dict
+         "src" $heroImg
+         "alt" "Готовый дом — лучший объект бригады Багаева"
+         "class" "hero__bg"
+         "sizes" "100vw"
+         "loading" "eager"
+         "fetchpriority" "high"
+    ) }}
+  {{ else }}
+    <div class="hero__bg hero__bg--placeholder">Фото лучшего объекта — ожидается от заказчика</div>
+  {{ end }}
   <div class="hero__overlay"></div>
   <div class="container">
     <div class="hero__content">
@@ -130,10 +133,14 @@
       {{ if .Params.cover }}{{ $cover = $page.Resources.GetMatch .Params.cover }}{{ end }}
       <a href="{{ .Permalink }}" class="project-card">
         {{ if $cover }}
-        <img class="project-card__photo"
-             src="{{ $cover.RelPermalink }}"
-             alt="{{ $page.Title }}"
-             loading="lazy">
+        {{ partial "responsive-image.html" (dict
+             "src" $cover
+             "alt" $page.Title
+             "class" "project-card__photo"
+             "sizes" "(max-width: 768px) 100vw, 33vw"
+             "widths" (slice 480 800 1200)
+             "loading" "lazy"
+        ) }}
         {{ else }}
         <div class="project-card__photo--placeholder">
           <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">

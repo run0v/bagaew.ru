@@ -74,11 +74,17 @@ newpost:
 	echo "Создание нового поста: $$NAME -> $$TRANSLITERATED.md"; \
 	hugo new content/"$$TRANSLITERATED.md" --kind post
 
-# Команда для запуска локального сервера разработки с отключенным быстрым рендерингом
-#	 
-#
+# Очистить кэш Hugo Image Processing и выходной каталог
+clean:
+	rm -rf resources/_gen public
+	@echo "✓ Очищено: resources/_gen/ + public/"
+
+# Быстрый запуск dev-сервера — использует существующий кэш ресурсов
 hugo_serve:
-	hugo server --cleanDestinationDir --ignoreCache --disableFastRender --port 1313
+	hugo server --disableFastRender --port 1313
+
+# Полный запуск со сбросом кэша — пересоздаёт все image variants заново (долго при первом старте)
+hugo_serve_clean: clean hugo_serve
 
 # Catch and ignore additional arguments
 %:
