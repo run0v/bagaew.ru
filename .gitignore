@@ -25,3 +25,9 @@ Thumbs.db
 # github
 .github
 /.claude/worktrees
+
+# Playwright MCP screenshots and snapshots
+/.playwright-mcp/
+
+# Hugo build lock file (создаётся при работе сервера)
+/.hugo_build.lock
