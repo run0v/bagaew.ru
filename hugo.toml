@@ -8,8 +8,8 @@ enableGitInfo = false
 [params]
   description     = 'Строим под ключ — от проекта до кровли. Гарантия 15 лет на работы.'
   phone           = '+7 (921) 802-02-42'
-  telegram        = 'https://t.me/DBliveproject'
-  telegram_handle = '@DBliveproject'
+  telegram        = 'https://t.me/BagaewGroup'
+  telegram_handle = '@BagaewGroup'
   email           = 'Karelia-stroybagaew@yandex.ru'
   region          = 'Подмосковье'
   experience      = '10'

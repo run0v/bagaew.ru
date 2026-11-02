@@ -159,7 +159,7 @@ Hero страницы кейса (`section-hero--with-cover` в `single.html`):
 ## Глобальные параметры
 
 `hugo.toml` `[params]`:
-- Контакты: `phone`, `telegram` (URL), `telegram_handle` (`@DBliveproject`), `email`. **WhatsApp удалён** — в шаблонах его больше нет, не возвращать.
+- Контакты: `phone`, `telegram` (URL), `telegram_handle` (`@BagaewGroup`), `email`. **WhatsApp удалён** — в шаблонах его больше нет, не возвращать.
 - Прочее: `region`, `experience` (лет), `guarantee` (лет), `description`.
 - Реквизиты ИП: `ip_name`, `inn`, `ogrnip`, `okpo`, `okato`, `oktmo`, `okopf`, `okogu`, `okfs` — все попадают в футер.
 
